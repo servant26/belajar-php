@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 <body>
 	<div class="container bg-light position-absolute top-50 start-50 translate-middle p-5">
@@ -32,7 +33,7 @@
 		  <option value="3">Dosen</option>
 		</select><br>
 	  <div class="d-grid gap-2">
-	  	<a class="btn btn-primary" href="pages/dashboard.php" role="button">Link</a>
+	  	<a class="btn btn-primary" href="pages/dashboard.php" role="button">Login</a>
 	  </div>
 	</form>
 	</div>

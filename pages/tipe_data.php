@@ -6,7 +6,6 @@
   <title>Dunia Kode</title>
     <link rel="icon" href="../assets/gambar/icon.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/script.js"></script>
@@ -16,7 +15,7 @@
 <!--Awal Navbar-->
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
   <div class="container-fluid m-2">
-    <a class="navbar-brand" href="#">DuniaKode</a>
+    <a class="navbar-brand" href="#">Ali Khatami</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -74,6 +73,7 @@
 	?><br>
 	<img src="../assets/gambar/tipe_data.png" class="img-fluid" alt="..."><br>
   </p>
+  <a class="btn btn-danger mt-5" href="dashboard.php" role="button">Kembali</a>
 </div>
 <!--Akhir Main-->
 
