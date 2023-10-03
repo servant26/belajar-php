@@ -72,17 +72,23 @@ $produk = [
         </li>
         <li class="nav-item dropdown mx-3">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Operator
+            Penerapan PHP
           </a>
           <ul class="dropdown-menu scrollable-menu">
             <li><a class="dropdown-item" href="sintaks.php">Sintaks Dasar</a></li>
             <li><a class="dropdown-item" href="variable.php">Variable</a></li>
             <li><a class="dropdown-item" href="tipe_data.php">Tipe Data</a></li>
             <li><a class="dropdown-item" href="operator.php">Operator</a></li>
+            <li><a class="dropdown-item" href="percabangan.php">Percabangan</a></li>
+            <li><a class="dropdown-item" href="perulangan.php">Perulangan</a></li>
+            <li><a class="dropdown-item" href="function.php">Function</a></li>
           </ul>
         </li>
         <li class="nav-item mx-3">
-          <a class="nav-link active" href="produk.php">Produk</a>
+          <a class="nav-link" href="produk_variable.php">Produk (Variable)</a>
+        </li>
+        <li class="nav-item mx-3">
+          <a class="nav-link active" href="produk_array.php">Produk (Array)</a>
         </li>
         <li class="nav-item mx-3">
           <a class="nav-link" href="../">Logout</a>

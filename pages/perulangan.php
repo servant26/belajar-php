@@ -26,7 +26,7 @@
         </li>
         <li class="nav-item dropdown mx-3">
           <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Variable
+            Perulangan
           </a>
           <ul class="dropdown-menu scrollable-menu">
             <li><a class="dropdown-item" href="sintaks.php">Sintaks Dasar</a></li>
@@ -55,15 +55,83 @@
 
 <!--Awal Main-->
 <div class="container bg-light text-black p-5 mt-5 p-lg-5 pt-lg-5 text-center text-sm-start">
-  <h2 align="center">Variable</h2><br><br>
-  <p>Variable dapat dikatakan sebagai tempat penyimpanan data yang nantinya bisa kita pakai atau kita panggil lagi, misal dalam kasus ini, saya membuat variable nama, yang isinya Ali Khatami(nama saya), kemudian saya panggil lagi variable tersebut untuk menunjukkan isi variablenya</p>
-	<img src="../assets/gambar/variable.png" class="img-fluid" alt="..."><br><br>
-	<p>Hasilnya : 
-		<?php
-		    $nama = "Ali Khatami";
-		    echo $nama . "<br>";
-		?>
-	</p>
+  <h2 align="center">Perulangan</h2><br><br>
+  <p>Loop atau perulangan merupakan proses unutk menjalan suatu statement atau code secara iterative/ berulangan. Pada bahas PHP terdapat empat jenis perulangan, yaitu While Loop, Do While, For Loop, dan foreach</p>
+<ol>
+    <li>
+        While
+        <br>
+        Perulangan `while` digunakan untuk menjalankan blok kode selama kondisi yang diberikan benar (true)<br>
+        <img src="../assets/gambar/while.png" class="img-fluid" alt="...">
+        <br>
+        <p>Contoh Hasil:
+        <?php
+        // Contoh perulangan while
+        $contoh_while = 1;
+        while ($contoh_while <= 5) {
+            echo ($contoh_while . " ");
+            $contoh_while++;
+        }
+        ?>
+        </p>
+    </li>
+
+    <li>
+        Do While
+        <br>
+        Perulangan `do while` mirip dengan `while`, tetapi blok kode akan dijalankan sekali sebelum memeriksa kondisi<br>
+        <img src="../assets/gambar/do_while.png" class="img-fluid" alt="...">
+        <br>
+        <p>Contoh Hasil:
+        <?php
+        // Contoh perulangan do while
+        $contoh_do_while = 1;
+        do {
+            echo ($contoh_do_while . " ");
+            $contoh_do_while++;
+        } while ($contoh_do_while <= 5);
+        ?>
+        </p>
+    </li>
+
+    <li>
+        For
+        <br>
+        Perulangan `for` digunakan untuk melakukan perulangan dengan menginisialisasi variabel, mengevaluasi kondisi, dan mengubah variabel dalam satu baris kode<br>
+        <img src="../assets/gambar/for.png" class="img-fluid" alt="...">
+        <br>
+        <p>Contoh Hasil:
+
+        <?php
+        // Contoh perulangan for
+        for ($contoh_for = 1; $contoh_for <= 5; $contoh_for++) {
+            echo ($contoh_for . " ");
+        }
+        ?>
+
+        </p>
+    </li>
+
+    <li>
+        Foreach
+        <br>
+        Perulangan `foreach` digunakan untuk mengulangi setiap elemen dalam array atau objek<br>
+        <img src="../assets/gambar/foreach.png" class="img-fluid" alt="...">
+        <br>
+        <p>Contoh Hasil:
+
+        <?php
+        // Contoh perulangan foreach (untuk Array)
+        $contoh_array = array(1, 2, 3, 4, 5);
+        foreach ($contoh_array as $nilai) {
+            echo ($nilai . " ");
+        }
+        ?>
+
+        </p>
+    </li>
+</ol>
+
   <a class="btn btn-danger mt-5" href="dashboard.php" role="button">Kembali</a>
 </div>
 <!--Akhir Main-->

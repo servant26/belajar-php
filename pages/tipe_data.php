@@ -33,10 +33,16 @@
             <li><a class="dropdown-item" href="variable.php">Variable</a></li>
             <li><a class="dropdown-item" href="tipe_data.php">Tipe Data</a></li>
             <li><a class="dropdown-item" href="operator.php">Operator</a></li>
+            <li><a class="dropdown-item" href="percabangan.php">Percabangan</a></li>
+            <li><a class="dropdown-item" href="perulangan.php">Perulangan</a></li>
+            <li><a class="dropdown-item" href="function.php">Function</a></li>
           </ul>
         </li>
         <li class="nav-item mx-3">
-          <a class="nav-link" href="produk.php">Produk</a>
+          <a class="nav-link" href="produk_variable.php">Produk (Variable)</a>
+        </li>
+        <li class="nav-item mx-3">
+          <a class="nav-link" href="produk_array.php">Produk (Array)</a>
         </li>
         <li class="nav-item mx-3">
           <a class="nav-link" href="../">Logout</a>
@@ -51,27 +57,25 @@
 <div class="container bg-light text-black p-5 mt-5 p-lg-5 pt-lg-5 text-center text-sm-start">
   <h2 align="center">Tipe Data</h2><br><br>
   <p>Ada banyak jenis-jenis tipe data pada php, contohnya seperti string, int, dll<br>
+	<img src="../assets/gambar/tipe_data.png" class="img-fluid" alt="..."><br><br>
+  <b>Dibawah adalah hasilnya :</b><br>
+    <?php
+      $nama = "Ini adalah contoh String";
+      $umur = 30;
+      $float = 3.14;
+      $isMakan = true;
+      $game = array('ea' => 'fifa', 'nintendo' => 'zelda', 'konami' => 'pes');
 
+      echo $nama . "<br>";
+      echo $umur . "<br>";
+      echo $float . "<br>";
+      echo $isMakan . "<br>";
 
-	<?php
-    // Ini adalah kode PHP
-    $nama = "Ini adalah contoh String";
-    $umur = 30;
-    $float = 3.14;
-    $isMakan = true;
-    $game = array('ea' => 'fifa', 'nintendo' => 'zelda', 'konami' => 'pes');
-
-    echo $nama . "<br>";
-    echo $umur . "<br>";
-    echo $float . "<br>";
-    echo $isMakan . "<br>";
-
-    echo "Permainan:<br>";
-    foreach ($game as $publisher => $title) {
-        echo "$publisher: $title<br>";
-    }
-	?><br>
-	<img src="../assets/gambar/tipe_data.png" class="img-fluid" alt="..."><br>
+      echo "Permainan:<br>";
+      foreach ($game as $publisher => $title) {
+          echo "$publisher: $title<br>";
+      }
+    ?>
   </p>
   <a class="btn btn-danger mt-5" href="dashboard.php" role="button">Kembali</a>
 </div>

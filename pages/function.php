@@ -26,7 +26,7 @@
         </li>
         <li class="nav-item dropdown mx-3">
           <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Variable
+            Function
           </a>
           <ul class="dropdown-menu scrollable-menu">
             <li><a class="dropdown-item" href="sintaks.php">Sintaks Dasar</a></li>
@@ -55,15 +55,67 @@
 
 <!--Awal Main-->
 <div class="container bg-light text-black p-5 mt-5 p-lg-5 pt-lg-5 text-center text-sm-start">
-  <h2 align="center">Variable</h2><br><br>
-  <p>Variable dapat dikatakan sebagai tempat penyimpanan data yang nantinya bisa kita pakai atau kita panggil lagi, misal dalam kasus ini, saya membuat variable nama, yang isinya Ali Khatami(nama saya), kemudian saya panggil lagi variable tersebut untuk menunjukkan isi variablenya</p>
-	<img src="../assets/gambar/variable.png" class="img-fluid" alt="..."><br><br>
-	<p>Hasilnya : 
-		<?php
-		    $nama = "Ali Khatami";
-		    echo $nama . "<br>";
-		?>
-	</p>
+  <h2 align="center">Function</h2><br><br>
+  <p>Function sendiri adalah potongan kecil dari program yang menjalankan tugas tertentu yang peletakkannya dapat dipisah dengan penulisan program utama dan reusable atau dapat digunakan kembali dimanapun</p>
+<ol>
+    <li>
+        Function Void (Tanpa Return dan Argument)
+        <br>
+        Function void tidak mengembalikan nilai (return) dan tidak memerlukan argumen. Ini hanya menjalankan sejumlah pernyataan yang terdapat di dalamnya.<br>
+        <img src="../assets/gambar/function_void.png" class="img-fluid" alt="...">
+        <br><br>
+        <p>Contoh:
+        <?php
+        // Function void
+        function sapa() {
+            echo "Halo, Selamat Datang!";
+        }
+
+        // Panggil function void
+        sapa();
+        ?>
+        </p>
+    </li>
+
+    <li>
+        Function dengan Return
+        <br>
+        Function dengan return mengembalikan nilai (return value) setelah dieksekusi. Nilai ini dapat digunakan dalam kode lain.<br>
+        <img src="../assets/gambar/function_return.png" class="img-fluid" alt="...">
+        <br>
+        <p>Contoh:
+        <?php
+        // Function dengan return
+        function tambah($a, $b) {
+            return $a + $b;
+        }
+
+        // Panggil function dengan return
+        $hasil = tambah(5, 3);
+        echo "Hasil penjumlahan: " . $hasil;
+        ?>
+        </p>
+    </li>
+
+    <li>
+        Function dengan Argument
+        <br>
+        Function dengan argument menerima parameter saat dipanggil. Parameter ini dapat digunakan di dalam function untuk menjalankan tugas tertentu.<br>
+        <img src="../assets/gambar/function_argument.png" class="img-fluid" alt="...">
+        <br>
+        <p>Contoh:
+        <?php
+        // Function dengan argument
+        function sapaNama($nama) {
+            echo "Halo, " . $nama . "!";
+        }
+
+        // Panggil function dengan argument
+        sapaNama("John");
+        ?>
+        </p>
+    </li>
+</ol>
   <a class="btn btn-danger mt-5" href="dashboard.php" role="button">Kembali</a>
 </div>
 <!--Akhir Main-->

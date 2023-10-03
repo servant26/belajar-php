@@ -33,10 +33,16 @@
             <li><a class="dropdown-item" href="variable.php">Variable</a></li>
             <li><a class="dropdown-item" href="tipe_data.php">Tipe Data</a></li>
             <li><a class="dropdown-item" href="operator.php">Operator</a></li>
+            <li><a class="dropdown-item" href="percabangan.php">Percabangan</a></li>
+            <li><a class="dropdown-item" href="perulangan.php">Perulangan</a></li>
+            <li><a class="dropdown-item" href="function.php">Function</a></li>
           </ul>
         </li>
         <li class="nav-item mx-3">
-          <a class="nav-link" href="produk.php">Produk</a>
+          <a class="nav-link" href="produk_variable.php">Produk (Variable)</a>
+        </li>
+        <li class="nav-item mx-3">
+          <a class="nav-link" href="produk_array.php">Produk (Array)</a>
         </li>
         <li class="nav-item mx-3">
           <a class="nav-link" href="../">Logout</a>
@@ -49,10 +55,18 @@
 
 <!--Awal Main-->
 <div class="container bg-light text-black p-5 mt-5 p-lg-5 pt-lg-5 text-center text-sm-start">
-  <h2 align="center">Contoh Sintaks Dasar</h2><br><br>
-  <p>Simplenya, untuk penulisan dasar php, dapat menggunakan tag : <br>
-    <img src="../assets/gambar/sintaks.png" class="img-fluid mb-5" alt="..."><br>
-  </p>
+  <h2 align="center">Contoh Sintaks Dasar dan Echo</h2><br><br>
+  <ol>
+    <li>Sintaks Dasar</li><p>Simplenya, untuk penulisan dasar php, dapat menggunakan tag :</p>
+    <img src="../assets/gambar/sintaks.png" class="img-fluid mb-5" alt="...">
+    <li>Penulisan Echo</li><p>Untuk melakukan echo, bisa menggunakan kode ini :</p>
+    <img src="../assets/gambar/echo.png"><br>
+
+    <?php
+      echo("halo, ini adalah contoh dari echo")
+    ?>
+
+  </ol>
   <a class="btn btn-danger mt-5" href="dashboard.php" role="button">Kembali</a>
 </div>
 <!--Akhir Main-->
