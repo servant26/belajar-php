@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['name'])) {
+    header("Location: ../index.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,7 +53,9 @@
           <a class="nav-link" href="produk_array.php">Produk (Array)</a>
         </li>
         <li class="nav-item mx-3">
-          <a class="nav-link" href="../">Logout</a>
+          <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Logout
+          </a>
         </li>
       </ul>
     </div>
@@ -58,7 +68,14 @@
   <div class="container">
     <div class="d-sm-flex align-items-center justify-content-between">
       <div>
-        <h1>Selamat Datang di Website saya</h1>
+        <?php
+        if (isset($_SESSION['name'])) {
+            $name = $_SESSION['name'];
+            echo "<h1>Selamat Datang $name</h1>";
+        } else {
+            echo "<h1>Selamat Datang</h1>";
+        }
+        ?>
         <p class="lead my-4">Mau belajar PHP yaaa...<br> nah kamu datang di web yang tepat, klik tombol mulai belajar untuk memulai</p>
         <a class="btn btn-outline-light" href="sintaks.php" role="button">Mulai Belajar</a>
       </div>
@@ -67,5 +84,29 @@
   </div>
 </section>
 <!--Akhir showcase-->
+
+<!--Awal modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel"><?=$name?> yakin ingin logout?</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Jika ingin membatalkan, pilih opsi No, namun jika memang benar ingin keluar, <?=$name?> bisa memilih opsi Logout
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No</button>
+        <a class="btn btn-danger" href="../" role="button">Logout</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Akhir modal -->
+
 </body>
+<script src="../assets/Javascript/script.js">
+
+</script>
 </html>

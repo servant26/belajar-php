@@ -1,4 +1,12 @@
 <?php
+session_start();
+
+if (isset($_SESSION['name'])) {
+    $name = $_SESSION['name'];
+} else {
+    $name = "";
+}
+
   $game1 = "Fortnite";
   $gambar1 = "../assets/gambar/fortnite.jpg";
   $deskripsi1 = "Masuk ke medan tempur, bertahan hidup, dan jadilah pemain terakhir";
@@ -77,7 +85,9 @@
           <a class="nav-link" href="produk_array.php">Produk (Array)</a>
         </li>
         <li class="nav-item mx-3">
-          <a class="nav-link" href="../">Logout</a>
+          <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Logout
+          </a>
         </li>
       </ul>
     </div>
@@ -158,6 +168,28 @@
 </div>
 <!--Akhir Card-->
 
+<!--Awal modal-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel"><?=$name?> yakin ingin logout?</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Jika ingin membatalkan, pilih opsi No, namun jika memang benar ingin keluar, <?=$name?> bisa memilih opsi Logout
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No</button>
+        <a class="btn btn-danger" href="../" role="button">Logout</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Akhir modal-->
 
 </body>
+<script src="../assets/Javascript/script.js">
+
+</script>
 </html>

@@ -12,28 +12,22 @@
 </head>
 <body>
 	<div class="container bg-light position-absolute top-50 start-50 translate-middle p-5">
-	<form>
+	<form method="post" action="proses.php">
 	  <h5 class="text-center">LOGIN</h5><br>
 	  <div class="mb-3"> 
-	    <label for="exampleInputEmail1" class="form-label">Username</label>
-	    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Masukkan usename...">
+	    <label for="exampleInputName" class="form-label">Nama</label>
+	    <input type="text" name="name" class="form-control" id="exampleInputName" aria-describedby="nameHelp" placeholder="Masukkan nama kamu..." required>
+	  </div>
+	  <div class="mb-3"> 
+	    <label for="exampleInputUsername" class="form-label">Username</label>
+	    <input type="text" name="username" class="form-control" id="exampleInputUsername" aria-describedby="usernameHelp" placeholder="Masukkan usename..." required>
 	  </div>
 	  <div class="mb-3">
 	    <label for="exampleInputPassword1" class="form-label">Password</label>
-	    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Masukkan password...">
+	    <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Masukkan password..." required>
 	  </div>
-	  <div class="mb-3 form-check">
-	    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-	    <label class="form-check-label" for="exampleCheck1">Ingat Saya</label>
-	  </div>
-	  <label for="exampleInputSelect" class="form-label">Pilih role</label>
-		<select class="form-select" aria-label="Default select example">
-		  <option value="1">Mahasiswa</option>
-		  <option value="2">Staff</option>
-		  <option value="3">Dosen</option>
-		</select><br>
 	  <div class="d-grid gap-2">
-	  	<a class="btn btn-primary" href="pages/dashboard.php" role="button">Login</a>
+	  	<button type="submit" class="btn btn-primary">Login</button>
 	  </div>
 	</form>
 	</div>
