@@ -99,6 +99,9 @@ $produk = [
           <a class="nav-link active" href="produk_array.php">Produk (Array)</a>
         </li>
         <li class="nav-item mx-3">
+          <a class="nav-link" href="../koneksi/koneksi.php">Tes Koneksi</a>
+        </li>
+        <li class="nav-item mx-3">
           <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Logout
           </a>
