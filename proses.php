@@ -17,7 +17,7 @@ if ($username == "user" && $password == "123") {
     $name = ucwords($_POST['name']);
     
     $_SESSION['name'] = $name;
-    header("Location: pages/dashboard_admin.php");
+    header("Location: admin/dashboard_admin.php");
     exit();  
 } 
 else {
