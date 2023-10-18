@@ -1,45 +1,3 @@
-<?php
-  $game1 = "Red Dead Redemption";
-  $gambar1 = "../assets/gambar/rdr.jpg";
-  $deskripsi1 = "Bermain game petualangan seru di Red Dead Redemption series pertama ini";
-  $link1 = "https://www.nintendo.com/us/store/products/red-dead-redemption-switch/";
-
-  $game2 = "Mario";
-  $gambar2 = "../assets/gambar/mario.jpg";
-  $deskripsi2 = "Bermain game balapan bersama Mario dan teman-teman";
-  $link2 = "https://www.nintendo.com/us/store/products/mario-kart-8-deluxe-switch/";
-
-  $game3 = "Fortnite";
-  $gambar3 = "../assets/gambar/fortnite.jpg";
-  $deskripsi3 = "Masuk ke medan tempur, bertahan hidup, dan jadilah pemain terakhir";
-  $link3 = "https://www.nintendo.com/store/products/fortnite-switch/";
-
-  $game4 = "NieR:Automata";
-  $gambar4 = "../assets/gambar/nier.jpg";
-  $deskripsi4 = "Bermain game action adventure seru bersama Nier Automata";
-  $link4 = "https://www.nintendo.com/store/products/nier-automata-the-end-of-yorha-edition-switch/";
-
-  $game5 = "Mortal Kombat 11";
-  $gambar5 = "../assets/gambar/mortal_kombat.jpg";
-  $deskripsi5 = "Game Fighting dengan mekanik menarik yang tidak kalah epic";
-  $link5 = "https://www.nintendo.com/store/products/mortal-kombat-11-switch/";
-
-  $game6 = "EA FC 24";
-  $gambar6 = "../assets/gambar/eafc24.jpg";
-  $deskripsi6 = "Bermain game bola, rasakan atmosfer baru dari game EAFC 24 ini";
-  $link6 = "https://www.nintendo.com/store/products/ea-sports-fc-24-switch/";
-
-  $game7 = "Naruto Ultimate Ninja Storm 4";
-  $gambar7 = "../assets/gambar/nsuns4.jpg";
-  $deskripsi7 = "Bertarung menggunakan karakter favoritmu di game ini";
-  $link7 = "https://www.nintendo.com/store/products/naruto-shippuden-ultimate-ninja-storm-4-road-to-boruto-switch/";
-
-  $game8 = "The Legend of Zelda: Breath of the Wild";
-  $gambar8 = "../assets/gambar/zelda.jpg";
-  $deskripsi8 = "Nikmati petualangan didunia yang luas";
-  $link8 = "https://www.nintendo.com/store/products/the-legend-of-zelda-breath-of-the-wild-switch/";
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,7 +14,6 @@
   <link href="../assets\bootstrap-5.3.2-dist\css\bootstrap.min.css" rel="stylesheet">
   <script src="../assets\bootstrap-5.3.2-dist\js\bootstrap.bundle.min.js"></script>
   <script src="../assets/js/script.js"></script>
-  <link rel="stylesheet" type="text/css" href="../assets/css/produk.css">
 </head>
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <!-- Site wrapper -->
@@ -128,14 +85,14 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="../crud/dashboard.php" class="nav-link">
+            <a href="dashboard.php" class="nav-link active">
               <p>
                 Pos Shop
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link active">
+            <a href="#" class="nav-link">
               <p>
                 Produk Nintendo
                 <i class="fas fa-angle-left right"></i>
@@ -143,7 +100,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../pages/produk_variable.php" class="nav-link active">
+                <a href="../pages/produk_variable.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Produk (Variable)</p>
                 </a>
@@ -173,58 +130,60 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
+    <section class="content">
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
       <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Daftar Produk (Variable)</h1>
+        <div class="container mt-5 mb-5">
+        <?php
+          include 'koneksi.php';
+          $id = $_GET['id'];
+          $data = mysqli_query($conn,"select * from products where id='$id'");
+          while($d = mysqli_fetch_array($data)){
+        ?>
+        <form method="post" action="update.php">
+          <div class="mb-3">
+            <input type="hidden" class="form-control" id="inputId" name="id" value="<?php echo $d['id']; ?>">
           </div>
+          <div class="mb-3">
+            <label for="inputNama" class="form-label">Nama Produk</label>
+            <input type="text" class="form-control" id="inputNama" name="product_name" value="<?php echo $d['product_name']; ?>">
+          </div>
+          <div class="mb-3">
+            <label for="inputKategori" class="form-label">Kategori</label>
+            <input type="text" class="form-control" id="inputKategori" name="category_id" value="<?php echo $d['category_id']; ?>">
+          </div>
+          <div class="mb-3">
+            <label for="inputDeskripsi" class="form-label">Deskripsi</label>
+            <textarea class="form-control" id="inputDeskripsi" name="description" rows="3"><?php echo $d['description']; ?></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="inputHarga" class="form-label">Harga</label>
+            <input type="number" class="form-control" id="inputHarga" name="price" value="<?php echo $d['price']; ?>">
+          </div>
+          <div class="mb-3">
+            <label for="inputStok" class="form-label">Stok</label>
+            <input type="number" class="form-control" id="inputStok" name="stock" value="<?php echo $d['stock']; ?>">
+          </div>
+          <div class="mb-5">
+            <label for="inputGambar" class="form-label">Tautan Gambar</label>
+            <input type="text" class="form-control" id="inputGambar" name="image" value="<?php echo $d['image']; ?>">
+          </div>
+          <div class="d-grid gap-2 d-md-block">
+            <a class="btn btn-danger" href="dashboard.php" role="button">Kembali</a>
+            <button type="submit" class="btn btn-primary">Simpan</button>
+          </div>
+        </form>
+        <?php 
+          }
+        ?>
         </div>
       </div><!-- /.container-fluid -->
     </section>
-
-<!-- Main content -->
-<section class="content">
-  <div class="container-fluid">
-    <table class="table table-striped table-dark">
-      <tr>
-        <th>NO</th>
-        <th>Gambar</th>
-        <th>Nama Game</th>
-        <th>Deskripsi</th>
-        <th>Link</th>
-      </tr>
-      <!-- =========================================================== -->
-      <h5 class="mt-1 mb-2"></h5>
-      <div class="row">
-        <?php
-        for ($i = 1; $i <= 8; $i++) {
-          $gambar = ${"gambar" . $i};
-          $game = ${"game" . $i};
-          $deskripsi = ${"deskripsi" . $i};
-          $link = ${"link" . $i};
-        ?>
-          <div class="col-md-4 col-sm-6 col-12">
-            <tr>
-              <td><?= $i ?></td>
-              <td class="lebar_gambar"><img src="<?= $gambar ?>" class="td_gambar"></td>
-              <td><?= $game ?></td>
-              <td><?= $deskripsi ?></td>
-              <td class="lebar_link"><a href="<?= $link ?>" class="btn btn-primary" target="_blank">Beli</a></td>
-            </tr>
-          </div>
-        <?php
-        }
-        ?>
-      </div>
-    </table>
-  </div><!-- /.container-fluid -->
-</section>
-<!-- /.content -->
-
     <!-- /.content -->
   </div>
-  
   <!-- /.content-wrapper -->
 
   <footer class="main-footer">

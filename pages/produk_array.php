@@ -1,12 +1,4 @@
 <?php
-session_start();
-
-if (isset($_SESSION['name'])) {
-    $name = $_SESSION['name'];
-} else {
-    $name = "";
-}
-
 $produk = [
 	[
 		"nama" => "The Legend of Zelda: Breath of the Wild",
@@ -24,7 +16,7 @@ $produk = [
 
 	[
 		"nama" => "EA FC 24",
-		"gambar" => "../assets/gambar/fifa.jpg",
+		"gambar" => "../assets/gambar/eafc24.jpg",
 		"deskripsi" => "Bermain game bola, rasakan atmosfer baru dari game EAFC 24 ini",
 		"link" => "https://www.nintendo.com/store/products/ea-sports-fc-24-switch/",
 	],
@@ -49,112 +41,221 @@ $produk = [
 		"deskripsi" => "Masuk ke medan tempur, bertahan hidup, dan jadilah pemain terakhir",
 		"link" => "https://www.nintendo.com/store/products/fortnite-switch/",
 	],
+
+  [
+    "nama" => "Mario",
+    "gambar" => "../assets/gambar/mario.jpg",
+    "deskripsi" => "Bermain game balapan bersama Mario dan teman-teman",
+    "link" => "https://www.nintendo.com/us/store/products/mario-kart-8-deluxe-switch/",
+  ],
+
+  [
+    "nama" => "Red Dead Redemption",
+    "gambar" => "../assets/gambar/rdr.jpg",
+    "deskripsi" => "Bermain game petualangan seru di Red Dead Redemption series pertama ini",
+    "link" => "https://www.nintendo.com/us/store/products/red-dead-redemption-switch/",
+  ],
 ];
 
  ?>
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Belajar PHP</title>
-    <link rel="icon" href="../assets/gambar/icon.png" type="image/png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <title>AdminLTE 3 | Blank Page</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../assets/adminlte/plugins/fontawesome-free/css/all.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../assets/adminlte/dist/css/adminlte.min.css">
+  <link href="../assets\bootstrap-5.3.2-dist\css\bootstrap.min.css" rel="stylesheet">
+  <script src="../assets\bootstrap-5.3.2-dist\js\bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/script.js"></script>
+  <link rel="stylesheet" type="text/css" href="../assets/css/produk.css">
 </head>
-<body>
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<!-- Site wrapper -->
+<div class="wrapper">
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-dark">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+    </ul>
 
-<!--Awal Navbar-->
-<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-  <div class="container-fluid m-2">
-    <a class="navbar-brand" href="#">Ali Khatami</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item mx-3">
-          <a class="nav-link" aria-current="page" href="dashboard.php">Home</a>
-        </li>
-        <li class="nav-item dropdown mx-3">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Penerapan PHP
-          </a>
-          <ul class="dropdown-menu scrollable-menu">
-            <li><a class="dropdown-item" href="sintaks.php">Sintaks Dasar</a></li>
-            <li><a class="dropdown-item" href="variable.php">Variable</a></li>
-            <li><a class="dropdown-item" href="tipe_data.php">Tipe Data</a></li>
-            <li><a class="dropdown-item" href="operator.php">Operator</a></li>
-            <li><a class="dropdown-item" href="percabangan.php">Percabangan</a></li>
-            <li><a class="dropdown-item" href="perulangan.php">Perulangan</a></li>
-            <li><a class="dropdown-item" href="function.php">Function</a></li>
-          </ul>
-        </li>
-        <li class="nav-item mx-3">
-          <a class="nav-link" href="produk_variable.php">Produk (Variable)</a>
-        </li>
-        <li class="nav-item mx-3">
-          <a class="nav-link active" href="produk_array.php">Produk (Array)</a>
-        </li>
-        <li class="nav-item mx-3">
-          <a class="nav-link" href="../koneksi/koneksi.php">Tes Koneksi</a>
-        </li>
-        <li class="nav-item mx-3">
-          <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Logout
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-<!--Akhir navbar-->
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+      <!-- Navbar Search -->
+      <li class="nav-item">
+        <div class="navbar-search-block">
+          <form class="form-inline">
+            <div class="input-group input-group-sm">
+              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+              <div class="input-group-append">
+                <button class="btn btn-navbar" type="submit">
+                  <i class="fas fa-search"></i>
+                </button>
+                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </li>
 
-<!--Awal Card-->
-<div class="container mt-5 mb-5" id="card-materi">
-  <div class="row g-4">
-    <?php foreach ($produk as $pd) :?> 
-    <div class="col-lg-4 col-md-6 col-sm-12">
-      <div class="card">
-        <img src="<?= $pd["gambar"];?>" class="card-img-top">
-        <div class="card-body">
-          <h5 class="card-title"><?= $pd["nama"];?></h5>
-          <p class="card-text"><?= $pd["deskripsi"];?></p>
-          <a href="<?= $pd["link"];?>" class="btn btn-primary" target="_blank">Baca selengkapnya...</a><br><br>
+      <!-- Messages Dropdown Menu -->
+      <li class="nav-item dropdown">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+          <i class="fas fa-expand-arrows-alt"></i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="https://adminlte.io" target="_blank" class="brand-link">
+      <img src="../assets/adminlte/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-dark">AdminLTE 3</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="../assets/adminlte/dist/img/ali_khatami.jpg" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">Ali Khatami</a>
         </div>
       </div>
-    </div>
-    <?php endforeach; ?>
-  </div><br><br>
-  <a class="btn btn-danger" href="dashboard.php" role="button">Kembali</a>
-</div>
-<!--Akhir Card-->
 
-
-<!--Awal modal-->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel"><?=$name?> yakin ingin logout?</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Jika ingin membatalkan, pilih opsi No, namun jika memang benar ingin keluar, <?=$name?> bisa memilih opsi Logout
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No</button>
-        <a class="btn btn-danger" href="../" role="button">Logout</a>
-      </div>
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item">
+            <a href="../crud/dashboard.php" class="nav-link">
+              <p>
+                Pos Shop
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link active">
+              <p>
+                Produk Nintendo
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="../pages/produk_variable.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Produk (Variable)</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/produk_array.php" class="nav-link active">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Produk (Array)</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="../index.php" class="nav-link">
+              <p>
+                Logout
+              </p>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
     </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Daftar Produk (Array)</h1>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <!-- =========================================================== -->
+        <table class="table table-striped table-dark">
+          <tr>
+            <th>NO</th>
+            <th>Gambar</th>
+            <th>Nama Game</th>
+            <th>Deskripsi</th>
+            <th>Link</th>
+          </tr>
+        <?php 
+        $no = 1;
+        foreach ($produk as $pd) :?> 
+        <div class="row">
+          <div class="col-md-4 col-sm-6 col-12">
+          <tr>
+            <td><?= $no++; ?></td>
+            <td class="lebar_gambar"><img src="<?= $pd["gambar"];?>" class="td_gambar"></td>
+            <td><?= $pd['nama'];?></td>
+            <td><?= $pd['deskripsi'];?></td>
+            <td class="lebar_link"><a href="<?= $pd["link"];?>" class="btn btn-primary" target="_blank">Beli</a></td>
+          </tr>
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+		    <?php endforeach; ?>
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
   </div>
+
+  <!-- /.content-wrapper -->
+
+  <footer class="main-footer">
+    <div class="float-right d-none d-sm-block">
+    </div>
+    <strong>Copyright &copy; Ali Khatami</strong>
+  </footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
 </div>
-<!--Akhir modal-->
+<!-- ./wrapper -->
 
+<!-- jQuery -->
+<script src="../assets/adminlte/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../assets/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../assets/adminlte/dist/js/adminlte.min.js"></script>
 </body>
-<script src="../assets/Javascript/script.js">
-
-</script>
 </html>

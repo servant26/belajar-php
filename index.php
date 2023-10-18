@@ -1,35 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Belajar PHP</title>
-    <link rel="icon" href="assets/gambar/icon.png" type="image/png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <title>Login</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="assets/adminlte/plugins/fontawesome-free/css/all.min.css">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="assets/adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="assets/adminlte/dist/css/adminlte.min.css">
 </head>
-<body>
-	<div class="container bg-light position-absolute top-50 start-50 translate-middle p-5">
-	<form method="post" action="proses.php">
-	  <h5 class="text-center">LOGIN</h5><br>
-	  <div class="mb-3"> 
-	    <label for="exampleInputName" class="form-label">Nama</label>
-	    <input type="text" name="name" class="form-control" id="exampleInputName" aria-describedby="nameHelp" placeholder="Masukkan nama kamu..." required>
-	  </div>
-	  <div class="mb-3"> 
-	    <label for="exampleInputUsername" class="form-label">Username</label>
-	    <input type="text" name="username" class="form-control" id="exampleInputUsername" aria-describedby="usernameHelp" placeholder="Masukkan usename..." required>
-	  </div>
-	  <div class="mb-3">
-	    <label for="exampleInputPassword1" class="form-label">Password</label>
-	    <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Masukkan password..." required>
-	  </div>
-	  <div class="d-grid gap-2">
-	  	<button type="submit" class="btn btn-primary">Login</button>
-	  </div>
-	</form>
-	</div>
+<body class="hold-transition login-page bg-dark">
+<div class="login-box">
+  <div class="login-logo">
+    <b>Silahkan Login</b>
+  </div>
+  <!-- /.login-logo -->
+  <div class="card">
+    <div class="card-body login-card-body bg-primary">
+      <p class="login-box-msg">Masuk untuk memulai</p>
+
+      <form action="pages/proses.php" method="post">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" name="username" placeholder="Masukkan username...">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" name="password" placeholder="Masukkan password...">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" class="btn btn-dark">Login</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+    </div>
+    <!-- /.login-card-body -->
+  </div>
+</div>
+<!-- /.login-box -->
+
+<!-- jQuery -->
+<script src="assets/adminlte/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="assets/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="assets/adminlte/dist/js/adminlte.min.js"></script>
 </body>
 </html>
