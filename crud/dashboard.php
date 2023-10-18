@@ -171,7 +171,7 @@
         <tbody>
         <?php
         include 'koneksi.php';
-        $no = 1;
+        $items_per_page = 5; 
         if (isset($_GET['kata_cari'])) {
             $kata_cari = $_GET['kata_cari'];
 
@@ -187,61 +187,79 @@
 
         $result = mysqli_query($conn, $query);
 
-        if(!$result) {
-         die("Query Error : ".mysqli_errno($conn)." - ".mysqli_error($conn));
+        if (!$result) {
+            die("Query Error : " . mysqli_errno($conn) . " - " . mysqli_error($conn));
         }
-        while ($row = mysqli_fetch_assoc($result)) {
-       ?>
-       <tr>
-        <td><?php echo $no++; ?></td>
-        <td><?php echo $row['product_name']; ?></td>
-        <td class="lebar_gambar"><img src="<?php echo $row['image']; ?>" class="td_gambar"></td>
-            <td>
-              <?php
-              if ($row['category_id'] == 1) {
-                  echo 'Sports';
-              } elseif ($row['category_id'] == 2) {
-                  echo 'Daily';
-              } elseif ($row['category_id'] == 3) {
-                  echo 'Accessories';
-              } else {
-                  echo 'Unknown';
-              }
-              ?>
-            </td>
-        <td><?php echo $row['description']; ?></td>
-        <td><?php echo $row['price']; ?></td>
-        <td><?php echo $row['stock']; ?></td>
-        <td>
-          <div class="d-grid gap-2 d-md-block">
-              <a class="btn btn-warning" href="edit.php?id=<?php echo $row['id']; ?>" role="button">Edit</a>
-              <a class="btn btn-danger" href="hapus.php?id=<?php echo $row['id']; ?>" role="button">Hapus</a>
-          </div>          
-        </td>
-       </tr>
-       <?php
-       }
-       ?>
-     </tbody>
-    </table>
-      </div><!-- /.container-fluid -->
-    </section>
 
-<nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-center mt-5">
-    <li class="page-item">
-      <a class="page-link" href="#">Prev</a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#">Next</a>
-    </li>
-  </ul>
-</nav>
+        $total_items = mysqli_num_rows($result);
+        $total_pages = ceil($total_items / $items_per_page); 
+
+        $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+
+        $start_index = ($current_page - 1) * $items_per_page;
+        $query = $query . " LIMIT $start_index, $items_per_page";
+        $result = mysqli_query($conn, $query);
+
+        if (!$result) {
+            die("Query Error : " . mysqli_errno($conn) . " - " . mysqli_error($conn));
+        }
+
+        $starting_number = ($current_page - 1) * $items_per_page + 1;
+
+        while ($row = mysqli_fetch_assoc($result)) {
+               ?>
+               <tr>
+                <td><?php echo $starting_number++; ?></td>
+                <td><?php echo $row['product_name']; ?></td>
+                <td class="lebar_gambar"><img src="<?php echo $row['image']; ?>" class="td_gambar"></td>
+                    <td>
+                      <?php
+                      if ($row['category_id'] == 1) {
+                          echo 'Sports';
+                      } elseif ($row['category_id'] == 2) {
+                          echo 'Daily';
+                      } elseif ($row['category_id'] == 3) {
+                          echo 'Accessories';
+                      } else {
+                          echo 'Unknown';
+                      }
+                      ?>
+                    </td>
+                <td><?php echo $row['description']; ?></td>
+                <td><?php echo $row['price']; ?></td>
+                <td><?php echo $row['stock']; ?></td>
+                <td>
+                  <div class="d-grid gap-2 d-md-block">
+                      <a class="btn btn-warning" href="edit.php?id=<?php echo $row['id']; ?>" role="button">Edit</a>
+                      <a class="btn btn-danger" href="hapus.php?id=<?php echo $row['id']; ?>" role="button">Hapus</a>
+                  </div>          
+                </td>
+               </tr>
+               <?php
+               }
+        ?>
+  </tbody>
+  </table>
+  <!-- Pagination below the table -->
+  <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center mt-4">
+          <?php
+          if ($current_page > 1) {
+              echo '<li class="page-item"><a class="page-link" href="?page=' . ($current_page - 1) . '">Prev</a></li>';
+          }
+
+          for ($page = 1; $page <= $total_pages; $page++) {
+              echo '<li class="page-item' . ($page == $current_page ? ' active' : '') . '"><a class="page-link" href="?page=' . $page . '">' . $page . '</a></li>';
+          }
+
+          if ($current_page < $total_pages) {
+              echo '<li class="page-item"><a class="page-link" href="?page=' . ($current_page + 1) . '">Next</a></li>';
+          }
+          ?>
+      </ul>
+  </nav>
+</div>
     <!-- /.content -->
-  </div>
   <!-- /.content-wrapper -->
 
   <footer class="main-footer">

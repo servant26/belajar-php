@@ -7,6 +7,6 @@ if ($username == "user" && $password == "123") {
     exit();
 }
 else {
-    echo '<script>alert("Username atau password salah. coba masukkan username admin dan password 123"); window.location.href = "../index.php";</script>';
+    echo '<script>alert("Username atau password salah. coba masukkan username user dan password 123"); window.location.href = "../index.php";</script>';
 }
 ?>
