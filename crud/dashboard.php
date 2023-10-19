@@ -175,14 +175,22 @@
         if (isset($_GET['kata_cari'])) {
             $kata_cari = $_GET['kata_cari'];
 
-            $query = "SELECT * FROM products WHERE 
-                      product_name LIKE '%" . $kata_cari . "%' OR
-                      category_id LIKE '%" . $kata_cari . "%' OR
-                      description LIKE '%" . $kata_cari . "%' OR
-                      price LIKE '%" . $kata_cari . "%' OR
-                      stock LIKE '%" . $kata_cari . "%'";
+        $query = "SELECT product_categories.category_name AS nama_kategori, products.*, product_categories.id AS category_id
+                  FROM products
+                  INNER JOIN product_categories ON product_categories.id = products.category_id
+                  WHERE 
+                  product_name LIKE '%" . $kata_cari . "%' OR
+                  category_name LIKE '%" . $kata_cari . "%' OR
+                  description LIKE '%" . $kata_cari . "%' OR
+                  price LIKE '%" . $kata_cari . "%' OR
+                  stock LIKE '%" . $kata_cari . "%'
+                  ORDER BY products.id ASC";
+
         } else {
-            $query = "SELECT * FROM products ORDER BY id ASC";
+          $query = "SELECT product_categories.category_name AS nama_kategori, products.*, product_categories.id AS category_id
+                    FROM products
+                    INNER JOIN product_categories ON product_categories.id = products.category_id
+                    ORDER BY products.id ASC";
         }
 
         $result = mysqli_query($conn, $query);
@@ -212,19 +220,7 @@
                 <td><?php echo $starting_number++; ?></td>
                 <td><?php echo $row['product_name']; ?></td>
                 <td class="lebar_gambar"><img src="<?php echo $row['image']; ?>" class="td_gambar"></td>
-                    <td>
-                      <?php
-                      if ($row['category_id'] == 1) {
-                          echo 'Sports';
-                      } elseif ($row['category_id'] == 2) {
-                          echo 'Daily';
-                      } elseif ($row['category_id'] == 3) {
-                          echo 'Accessories';
-                      } else {
-                          echo 'Unknown';
-                      }
-                      ?>
-                    </td>
+                <td><?php echo $row['nama_kategori']; ?></td>
                 <td><?php echo $row['description']; ?></td>
                 <td><?php echo $row['price']; ?></td>
                 <td><?php echo $row['stock']; ?></td>

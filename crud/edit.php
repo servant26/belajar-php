@@ -153,7 +153,11 @@
           </div>
           <div class="mb-3">
             <label for="inputKategori" class="form-label">Kategori</label>
-            <input type="text" class="form-control" id="inputKategori" name="category_id" value="<?php echo $d['category_id']; ?>">
+            <select class="form-select" id="inputKategori" name="category_id" required>
+              <option value="1" <?php if ($d['category_id'] == 1) echo 'selected'; ?>>Sports</option>
+              <option value="2" <?php if ($d['category_id'] == 2) echo 'selected'; ?>>Daily</option>
+              <option value="3" <?php if ($d['category_id'] == 3) echo 'selected'; ?>>Accessories</option>
+            </select>
           </div>
           <div class="mb-3">
             <label for="inputDeskripsi" class="form-label">Deskripsi</label>
