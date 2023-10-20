@@ -153,6 +153,13 @@ $produk = [
             </a>
           </li>
           <li class="nav-item">
+            <a href="../pages/keterangan_data.php" class="nav-link">
+              <p>
+                Keterangan Data
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="#" class="nav-link active">
               <p>
                 Produk Nintendo

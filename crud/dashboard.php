@@ -93,6 +93,13 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="../pages/keterangan_data.php" class="nav-link">
+              <p>
+                Keterangan Data
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <p>
                 Produk Nintendo
@@ -185,7 +192,6 @@
                   price LIKE '%" . $kata_cari . "%' OR
                   stock LIKE '%" . $kata_cari . "%'
                   ORDER BY products.id ASC";
-
         } else {
           $query = "SELECT product_categories.category_name AS nama_kategori, products.*, product_categories.id AS category_id
                     FROM products

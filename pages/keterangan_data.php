@@ -1,45 +1,63 @@
 <?php
-  $game1 = "Red Dead Redemption";
-  $gambar1 = "../assets/gambar/rdr.jpg";
-  $deskripsi1 = "Bermain game petualangan seru di Red Dead Redemption series pertama ini";
-  $link1 = "https://www.nintendo.com/us/store/products/red-dead-redemption-switch/";
+$produk = [
+	[
+		"nama" => "The Legend of Zelda: Breath of the Wild",
+		"gambar" => "../assets/gambar/zelda.jpg",
+		"deskripsi" => "Nikmati petualangan didunia yang luas",
+		"link" => "https://www.nintendo.com/store/products/the-legend-of-zelda-breath-of-the-wild-switch/",
+	],
 
-  $game2 = "Mario";
-  $gambar2 = "../assets/gambar/mario.jpg";
-  $deskripsi2 = "Bermain game balapan bersama Mario dan teman-teman";
-  $link2 = "https://www.nintendo.com/us/store/products/mario-kart-8-deluxe-switch/";
+	[
+		"nama" => "Naruto Ultimate Ninja Storm 4",
+		"gambar" => "../assets/gambar/nsuns4.jpg",
+		"deskripsi" => "Bertarung menggunakan karakter favoritmu di game ini",
+		"link" => "https://www.nintendo.com/store/products/naruto-shippuden-ultimate-ninja-storm-4-road-to-boruto-switch/",
+	],
 
-  $game3 = "Fortnite";
-  $gambar3 = "../assets/gambar/fortnite.jpg";
-  $deskripsi3 = "Masuk ke medan tempur, bertahan hidup, dan jadilah pemain terakhir";
-  $link3 = "https://www.nintendo.com/store/products/fortnite-switch/";
+	[
+		"nama" => "EA FC 24",
+		"gambar" => "../assets/gambar/eafc24.jpg",
+		"deskripsi" => "Bermain game bola, rasakan atmosfer baru dari game EAFC 24 ini",
+		"link" => "https://www.nintendo.com/store/products/ea-sports-fc-24-switch/",
+	],
 
-  $game4 = "NieR:Automata";
-  $gambar4 = "../assets/gambar/nier.jpg";
-  $deskripsi4 = "Bermain game action adventure seru bersama Nier Automata";
-  $link4 = "https://www.nintendo.com/store/products/nier-automata-the-end-of-yorha-edition-switch/";
+	[
+		"nama" => "Mortal Kombat 11",
+		"gambar" => "../assets/gambar/mortal_kombat.jpg",
+		"deskripsi" => "Game Fighting dengan mekanik menarik yang tidak kalah epic",
+		"link" => "https://www.nintendo.com/store/products/mortal-kombat-11-switch/",
+	],
 
-  $game5 = "Mortal Kombat 11";
-  $gambar5 = "../assets/gambar/mortal_kombat.jpg";
-  $deskripsi5 = "Game Fighting dengan mekanik menarik yang tidak kalah epic";
-  $link5 = "https://www.nintendo.com/store/products/mortal-kombat-11-switch/";
+	[
+		"nama" => "NieR:Automata",
+		"gambar" => "../assets/gambar/nier.jpg",
+		"deskripsi" => "Bermain game action adventure seru bersama Nier Automata",
+		"link" => "https://www.nintendo.com/store/products/nier-automata-the-end-of-yorha-edition-switch/",
+	],
 
-  $game6 = "EA FC 24";
-  $gambar6 = "../assets/gambar/eafc24.jpg";
-  $deskripsi6 = "Bermain game bola, rasakan atmosfer baru dari game EAFC 24 ini";
-  $link6 = "https://www.nintendo.com/store/products/ea-sports-fc-24-switch/";
+	[
+		"nama" => "Fortnite",
+		"gambar" => "../assets/gambar/fortnite.jpg",
+		"deskripsi" => "Masuk ke medan tempur, bertahan hidup, dan jadilah pemain terakhir",
+		"link" => "https://www.nintendo.com/store/products/fortnite-switch/",
+	],
 
-  $game7 = "Naruto Ultimate Ninja Storm 4";
-  $gambar7 = "../assets/gambar/nsuns4.jpg";
-  $deskripsi7 = "Bertarung menggunakan karakter favoritmu di game ini";
-  $link7 = "https://www.nintendo.com/store/products/naruto-shippuden-ultimate-ninja-storm-4-road-to-boruto-switch/";
+  [
+    "nama" => "Mario",
+    "gambar" => "../assets/gambar/mario.jpg",
+    "deskripsi" => "Bermain game balapan bersama Mario dan teman-teman",
+    "link" => "https://www.nintendo.com/us/store/products/mario-kart-8-deluxe-switch/",
+  ],
 
-  $game8 = "The Legend of Zelda: Breath of the Wild";
-  $gambar8 = "../assets/gambar/zelda.jpg";
-  $deskripsi8 = "Nikmati petualangan didunia yang luas";
-  $link8 = "https://www.nintendo.com/store/products/the-legend-of-zelda-breath-of-the-wild-switch/";
-?>
+  [
+    "nama" => "Red Dead Redemption",
+    "gambar" => "../assets/gambar/rdr.jpg",
+    "deskripsi" => "Bermain game petualangan seru di Red Dead Redemption series pertama ini",
+    "link" => "https://www.nintendo.com/us/store/products/red-dead-redemption-switch/",
+  ],
+];
 
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -135,14 +153,14 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="../pages/keterangan_data.php" class="nav-link">
+            <a href="../pages/keterangan_data.php" class="nav-link active">
               <p>
                 Keterangan Data
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link active">
+            <a href="#" class="nav-link">
               <p>
                 Produk Nintendo
                 <i class="fas fa-angle-left right"></i>
@@ -150,13 +168,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../pages/produk_variable.php" class="nav-link active">
+                <a href="../pages/produk_variable.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Produk (Variable)</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../pages/produk_array.php" class="nav-link">
+                <a href="../pages/produk_array.php" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Produk (Array)</p>
                 </a>
@@ -184,54 +202,73 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Daftar Produk (Variable)</h1>
+            <h1>Data Produk</h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
     </section>
 
-<!-- Main content -->
-<section class="content">
-  <div class="container-fluid">
-    <table class="table table-striped table-dark">
-      <tr>
-        <th>NO</th>
-        <th>Gambar</th>
-        <th>Nama Game</th>
-        <th>Deskripsi</th>
-        <th>Link</th>
-      </tr>
-      <!-- =========================================================== -->
-      <h5 class="mt-1 mb-2"></h5>
-      <div class="row">
-        <?php
-        for ($i = 1; $i <= 8; $i++) {
-          $gambar = ${"gambar" . $i};
-          $game = ${"game" . $i};
-          $deskripsi = ${"deskripsi" . $i};
-          $link = ${"link" . $i};
-        ?>
-          <div class="col-md-4 col-sm-6 col-12">
-            <tr>
-              <td><?= $i ?></td>
-              <td class="lebar_gambar"><img src="<?= $gambar ?>" class="td_gambar"></td>
-              <td><?= $game ?></td>
-              <td><?= $deskripsi ?></td>
-              <td class="lebar_link"><a href="<?= $link ?>" class="btn btn-primary" target="_blank">Beli</a></td>
-            </tr>
-          </div>
-        <?php
-        }
-        ?>
-      </div>
-    </table>
-  </div><!-- /.container-fluid -->
-</section>
-<!-- /.content -->
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <!-- Small Box (Stat card) -->
+        <div class="row">
+          <div class="col-lg-3 col-6">
+            <!-- small card -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>150</h3>
 
+                <p>Jumlah Produk</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-shopping-cart"></i>
+              </div>
+              <a href="../crud/dashboard.php" class="small-box-footer">
+                More info <i class="fas fa-arrow-circle-right"></i>
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-3 col-6">
+            <!-- small card -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3>44</h3>
+
+                <p>Customers</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-user-plus"></i>
+              </div>
+              <a href="#" class="small-box-footer">
+                More info <i class="fas fa-arrow-circle-right"></i>
+              </a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small card -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3>65</h3>
+
+                <p>Vendors</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-chart-pie"></i>
+              </div>
+              <a href="#" class="small-box-footer">
+                More info <i class="fas fa-arrow-circle-right"></i>
+              </a>
+            </div>
+          </div>
+          <!-- ./col -->
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
     <!-- /.content -->
   </div>
-  
+
   <!-- /.content-wrapper -->
 
   <footer class="main-footer">
