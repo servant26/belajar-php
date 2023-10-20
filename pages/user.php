@@ -1,45 +1,3 @@
-<?php
-  $game1 = "Red Dead Redemption";
-  $gambar1 = "../assets/gambar/rdr.jpg";
-  $deskripsi1 = "Bermain game petualangan seru di Red Dead Redemption series pertama ini";
-  $link1 = "https://www.nintendo.com/us/store/products/red-dead-redemption-switch/";
-
-  $game2 = "Mario";
-  $gambar2 = "../assets/gambar/mario.jpg";
-  $deskripsi2 = "Bermain game balapan bersama Mario dan teman-teman";
-  $link2 = "https://www.nintendo.com/us/store/products/mario-kart-8-deluxe-switch/";
-
-  $game3 = "Fortnite";
-  $gambar3 = "../assets/gambar/fortnite.jpg";
-  $deskripsi3 = "Masuk ke medan tempur, bertahan hidup, dan jadilah pemain terakhir";
-  $link3 = "https://www.nintendo.com/store/products/fortnite-switch/";
-
-  $game4 = "NieR:Automata";
-  $gambar4 = "../assets/gambar/nier.jpg";
-  $deskripsi4 = "Bermain game action adventure seru bersama Nier Automata";
-  $link4 = "https://www.nintendo.com/store/products/nier-automata-the-end-of-yorha-edition-switch/";
-
-  $game5 = "Mortal Kombat 11";
-  $gambar5 = "../assets/gambar/mortal_kombat.jpg";
-  $deskripsi5 = "Game Fighting dengan mekanik menarik yang tidak kalah epic";
-  $link5 = "https://www.nintendo.com/store/products/mortal-kombat-11-switch/";
-
-  $game6 = "EA FC 24";
-  $gambar6 = "../assets/gambar/eafc24.jpg";
-  $deskripsi6 = "Bermain game bola, rasakan atmosfer baru dari game EAFC 24 ini";
-  $link6 = "https://www.nintendo.com/store/products/ea-sports-fc-24-switch/";
-
-  $game7 = "Naruto Ultimate Ninja Storm 4";
-  $gambar7 = "../assets/gambar/nsuns4.jpg";
-  $deskripsi7 = "Bertarung menggunakan karakter favoritmu di game ini";
-  $link7 = "https://www.nintendo.com/store/products/naruto-shippuden-ultimate-ninja-storm-4-road-to-boruto-switch/";
-
-  $game8 = "The Legend of Zelda: Breath of the Wild";
-  $gambar8 = "../assets/gambar/zelda.jpg";
-  $deskripsi8 = "Nikmati petualangan didunia yang luas";
-  $link8 = "https://www.nintendo.com/store/products/the-legend-of-zelda-breath-of-the-wild-switch/";
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,7 +14,7 @@
   <link href="../assets\bootstrap-5.3.2-dist\css\bootstrap.min.css" rel="stylesheet">
   <script src="../assets\bootstrap-5.3.2-dist\js\bootstrap.bundle.min.js"></script>
   <script src="../assets/js/script.js"></script>
-  <link rel="stylesheet" type="text/css" href="../assets/css/produk.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/crud.css">
 </head>
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <!-- Site wrapper -->
@@ -142,7 +100,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link active">
+            <a href="#" class="nav-link">
               <p>
                 Produk Nintendo
                 <i class="fas fa-angle-left right"></i>
@@ -150,7 +108,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../pages/produk_variable.php" class="nav-link active">
+                <a href="../pages/produk_variable.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Produk (Variable)</p>
                 </a>
@@ -164,7 +122,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="../pages/user.php" class="nav-link">
+            <a href="../index.php" class="nav-link active">
               <p>
                 Daftar Pengguna
               </p>
@@ -187,58 +145,115 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
+    <section class="content">
+    </section>
+
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Daftar Produk (Variable)</h1>
+            <h1>Daftar Produk</h1>
+            <a class="btn btn-primary mt-4" href="tambah.php" role="button">Tambah</a>
+            <form class="d-flex mt-3" role="search" action="user.php" method="get">
+              <input class="form-control me-2" type="search" name="kata_cari" placeholder="Cari materi..." aria-label="Cari materi..." value="<?php if(isset($_GET['kata_cari'])) { echo $_GET['kata_cari']; } ?>">
+              <button class="btn btn-primary" type="submit">Cari</button>
+            </form>
           </div>
         </div>
       </div><!-- /.container-fluid -->
     </section>
 
-<!-- Main content -->
-<section class="content">
-  <div class="container-fluid">
-    <table class="table table-striped table-dark">
-      <tr>
-        <th>NO</th>
-        <th>Gambar</th>
-        <th>Nama Game</th>
-        <th>Deskripsi</th>
-        <th>Link</th>
-      </tr>
-      <!-- =========================================================== -->
-      <h5 class="mt-1 mb-2"></h5>
-      <div class="row">
-        <?php
-        for ($i = 1; $i <= 8; $i++) {
-          $gambar = ${"gambar" . $i};
-          $game = ${"game" . $i};
-          $deskripsi = ${"deskripsi" . $i};
-          $link = ${"link" . $i};
-        ?>
-          <div class="col-md-4 col-sm-6 col-12">
-            <tr>
-              <td><?= $i ?></td>
-              <td class="lebar_gambar"><img src="<?= $gambar ?>" class="td_gambar"></td>
-              <td><?= $game ?></td>
-              <td><?= $deskripsi ?></td>
-              <td class="lebar_link"><a href="<?= $link ?>" class="btn btn-primary" target="_blank">Beli</a></td>
-            </tr>
-          </div>
-        <?php
-        }
-        ?>
-      </div>
-    </table>
-  </div><!-- /.container-fluid -->
-</section>
-<!-- /.content -->
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <!-- =========================================================== -->
+        <h5 class="mt-1 mb-2"></h5>
+      <table class="table table-striped table-dark">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Nama</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
 
+        <tbody>
+        <?php
+        include '../crud/koneksi.php';
+        $items_per_page = 5; 
+        if (isset($_GET['kata_cari'])) {
+            $kata_cari = $_GET['kata_cari'];
+
+        	$query = "SELECT * FROM users WHERE 
+                      name LIKE '%" . $kata_cari . "%' OR
+                      email LIKE '%" . $kata_cari . "%' OR
+                      phone_number LIKE '%" . $kata_cari . "%'";
+	        } else {
+	        	$query = "SELECT * FROM users ORDER BY id ASC";
+	        }
+
+        $result = mysqli_query($conn, $query);
+
+        if (!$result) {
+            die("Query Error : " . mysqli_errno($conn) . " - " . mysqli_error($conn));
+        }
+
+        $total_items = mysqli_num_rows($result);
+        $total_pages = ceil($total_items / $items_per_page); 
+
+        $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+
+        $start_index = ($current_page - 1) * $items_per_page;
+        $query = $query . " LIMIT $start_index, $items_per_page";
+        $result = mysqli_query($conn, $query);
+
+        if (!$result) {
+            die("Query Error : " . mysqli_errno($conn) . " - " . mysqli_error($conn));
+        }
+
+        $starting_number = ($current_page - 1) * $items_per_page + 1;
+
+        while ($row = mysqli_fetch_assoc($result)) {
+               ?>
+               <tr>
+                <td><?php echo $starting_number++; ?></td>
+                <td><?php echo $row['name']; ?></td>
+                <td><?php echo $row['email']; ?></td>
+                <td><?php echo $row['phone_number']; ?></td>
+                <td>
+                  <div class="d-grid gap-2 d-md-block">
+                      <a class="btn btn-warning" href="edit.php?id=<?php echo $row['id']; ?>" role="button">Edit</a>
+                      <a class="btn btn-danger" href="hapus.php?id=<?php echo $row['id']; ?>" role="button">Hapus</a>
+                  </div>          
+                </td>
+               </tr>
+               <?php
+               }
+        ?>
+  </tbody>
+  </table>
+  <!-- Pagination below the table -->
+  <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center mt-4">
+          <?php
+          if ($current_page > 1) {
+              echo '<li class="page-item"><a class="page-link" href="?page=' . ($current_page - 1) . '">Prev</a></li>';
+          }
+
+          for ($page = 1; $page <= $total_pages; $page++) {
+              echo '<li class="page-item' . ($page == $current_page ? ' active' : '') . '"><a class="page-link" href="?page=' . $page . '">' . $page . '</a></li>';
+          }
+
+          if ($current_page < $total_pages) {
+              echo '<li class="page-item"><a class="page-link" href="?page=' . ($current_page + 1) . '">Next</a></li>';
+          }
+          ?>
+      </ul>
+  </nav>
+</div>
     <!-- /.content -->
-  </div>
-  
   <!-- /.content-wrapper -->
 
   <footer class="main-footer">

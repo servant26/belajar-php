@@ -1,63 +1,3 @@
-<?php
-$produk = [
-	[
-		"nama" => "The Legend of Zelda: Breath of the Wild",
-		"gambar" => "../assets/gambar/zelda.jpg",
-		"deskripsi" => "Nikmati petualangan didunia yang luas",
-		"link" => "https://www.nintendo.com/store/products/the-legend-of-zelda-breath-of-the-wild-switch/",
-	],
-
-	[
-		"nama" => "Naruto Ultimate Ninja Storm 4",
-		"gambar" => "../assets/gambar/nsuns4.jpg",
-		"deskripsi" => "Bertarung menggunakan karakter favoritmu di game ini",
-		"link" => "https://www.nintendo.com/store/products/naruto-shippuden-ultimate-ninja-storm-4-road-to-boruto-switch/",
-	],
-
-	[
-		"nama" => "EA FC 24",
-		"gambar" => "../assets/gambar/eafc24.jpg",
-		"deskripsi" => "Bermain game bola, rasakan atmosfer baru dari game EAFC 24 ini",
-		"link" => "https://www.nintendo.com/store/products/ea-sports-fc-24-switch/",
-	],
-
-	[
-		"nama" => "Mortal Kombat 11",
-		"gambar" => "../assets/gambar/mortal_kombat.jpg",
-		"deskripsi" => "Game Fighting dengan mekanik menarik yang tidak kalah epic",
-		"link" => "https://www.nintendo.com/store/products/mortal-kombat-11-switch/",
-	],
-
-	[
-		"nama" => "NieR:Automata",
-		"gambar" => "../assets/gambar/nier.jpg",
-		"deskripsi" => "Bermain game action adventure seru bersama Nier Automata",
-		"link" => "https://www.nintendo.com/store/products/nier-automata-the-end-of-yorha-edition-switch/",
-	],
-
-	[
-		"nama" => "Fortnite",
-		"gambar" => "../assets/gambar/fortnite.jpg",
-		"deskripsi" => "Masuk ke medan tempur, bertahan hidup, dan jadilah pemain terakhir",
-		"link" => "https://www.nintendo.com/store/products/fortnite-switch/",
-	],
-
-  [
-    "nama" => "Mario",
-    "gambar" => "../assets/gambar/mario.jpg",
-    "deskripsi" => "Bermain game balapan bersama Mario dan teman-teman",
-    "link" => "https://www.nintendo.com/us/store/products/mario-kart-8-deluxe-switch/",
-  ],
-
-  [
-    "nama" => "Red Dead Redemption",
-    "gambar" => "../assets/gambar/rdr.jpg",
-    "deskripsi" => "Bermain game petualangan seru di Red Dead Redemption series pertama ini",
-    "link" => "https://www.nintendo.com/us/store/products/red-dead-redemption-switch/",
-  ],
-];
-
- ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -182,6 +122,13 @@ $produk = [
             </ul>
           </li>
           <li class="nav-item">
+            <a href="../pages/user.php" class="nav-link">
+              <p>
+                Daftar Pengguna
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="../index.php" class="nav-link">
               <p>
                 Logout
@@ -211,14 +158,22 @@ $produk = [
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
+        <?php
+        include '../crud/koneksi.php';
+        $query = "SELECT
+                    (SELECT COUNT(*) FROM products) AS produk,
+                    (SELECT COUNT(*) FROM users) AS customer,
+                    (SELECT COUNT(*) FROM vendors) AS vendors";
+        $result = mysqli_query($conn, $query);
+        $row = mysqli_fetch_assoc($result);
+        ?>
         <!-- Small Box (Stat card) -->
         <div class="row">
           <div class="col-lg-3 col-6">
             <!-- small card -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>150</h3>
-
+                <h3><?php echo $row['produk']; ?></h3>
                 <p>Jumlah Produk</p>
               </div>
               <div class="icon">
@@ -233,9 +188,8 @@ $produk = [
             <!-- small card -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>44</h3>
-
-                <p>Customers</p>
+                <h3><?php echo $row['customer']; ?></h3>
+                <p>Jumlah Pengguna</p>
               </div>
               <div class="icon">
                 <i class="fas fa-user-plus"></i>
@@ -250,8 +204,7 @@ $produk = [
             <!-- small card -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>65</h3>
-
+                <h3><?php echo $row['vendors']; ?></h3>
                 <p>Vendors</p>
               </div>
               <div class="icon">

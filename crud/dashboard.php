@@ -122,6 +122,13 @@
             </ul>
           </li>
           <li class="nav-item">
+            <a href="../pages/user.php" class="nav-link">
+              <p>
+                Daftar Pengguna
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="../index.php" class="nav-link">
               <p>
                 Logout
