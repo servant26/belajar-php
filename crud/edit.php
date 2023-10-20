@@ -14,6 +14,7 @@
   <link href="../assets\bootstrap-5.3.2-dist\css\bootstrap.min.css" rel="stylesheet">
   <script src="../assets\bootstrap-5.3.2-dist\js\bootstrap.bundle.min.js"></script>
   <script src="../assets/js/script.js"></script>
+  <link rel="stylesheet" type="text/css" href="../assets/css/crud.css">
 </head>
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <!-- Site wrapper -->
@@ -85,9 +86,16 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="dashboard.php" class="nav-link active">
+            <a href="#" class="nav-link active">
               <p>
                 Pos Shop
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="../pages/keterangan_data.php" class="nav-link">
+              <p>
+                Keterangan Data
               </p>
             </a>
           </li>
@@ -112,6 +120,13 @@
                 </a>
               </li>
             </ul>
+          </li>
+          <li class="nav-item">
+            <a href="../pages/user.php" class="nav-link">
+              <p>
+                Daftar Pengguna
+              </p>
+            </a>
           </li>
           <li class="nav-item">
             <a href="../index.php" class="nav-link">
