@@ -148,111 +148,45 @@
     <section class="content">
     </section>
 
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Daftar Pengguna</h1>
-            <form class="d-flex mt-3" role="search" action="user.php" method="get">
-              <input class="form-control me-2" type="search" name="kata_cari" placeholder="Cari materi..." aria-label="Cari materi..." value="<?php if(isset($_GET['kata_cari'])) { echo $_GET['kata_cari']; } ?>">
-              <button class="btn btn-primary" type="submit">Cari</button>
-            </form>
-          </div>
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
-
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <!-- =========================================================== -->
-        <h5 class="mt-1 mb-2"></h5>
-      <table class="table table-striped table-dark">
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>Nama</th>
-            <th>Email</th>
-            <th>Phone Number</th>
-            <th>Aksi</th>
-          </tr>
-        </thead>
-
-        <tbody>
+        <div class="container mt-5 mb-5">
         <?php
-        include '../crud/koneksi.php';
-        $items_per_page = 5; 
-        if (isset($_GET['kata_cari'])) {
-            $kata_cari = $_GET['kata_cari'];
-
-        	$query = "SELECT * FROM users WHERE 
-                      name LIKE '%" . $kata_cari . "%' OR
-                      email LIKE '%" . $kata_cari . "%' OR
-                      phone_number LIKE '%" . $kata_cari . "%'";
-	        } else {
-	        	$query = "SELECT * FROM users ORDER BY id ASC";
-	        }
-
-        $result = mysqli_query($conn, $query);
-
-        if (!$result) {
-            die("Query Error : " . mysqli_errno($conn) . " - " . mysqli_error($conn));
-        }
-
-        $total_items = mysqli_num_rows($result);
-        $total_pages = ceil($total_items / $items_per_page); 
-
-        $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
-
-        $start_index = ($current_page - 1) * $items_per_page;
-        $query = $query . " LIMIT $start_index, $items_per_page";
-        $result = mysqli_query($conn, $query);
-
-        if (!$result) {
-            die("Query Error : " . mysqli_errno($conn) . " - " . mysqli_error($conn));
-        }
-
-        $starting_number = ($current_page - 1) * $items_per_page + 1;
-
-        while ($row = mysqli_fetch_assoc($result)) {
-               ?>
-               <tr>
-                <td><?php echo $starting_number++; ?></td>
-                <td><?php echo $row['name']; ?></td>
-                <td><?php echo $row['email']; ?></td>
-                <td><?php echo $row['phone_number']; ?></td>
-                <td>
-                  <div class="d-grid gap-2 d-md-block">
-                      <a class="btn btn-warning" href="editUser.php?id=<?php echo $row['id']; ?>" role="button">Edit</a>
-                      <a class="btn btn-danger" href="hapusUser.php?id=<?php echo $row['id']; ?>" role="button">Hapus</a>
-                  </div>          
-                </td>
-               </tr>
-               <?php
-               }
+          include '../crud/koneksi.php';
+          $id = $_GET['id'];
+          $data = mysqli_query($conn,"select * from users where id='$id'");
+          while($d = mysqli_fetch_array($data)){
         ?>
-  </tbody>
-  </table>
-  <!-- Pagination below the table -->
-  <nav aria-label="Page navigation example">
-      <ul class="pagination justify-content-center mt-4">
-          <?php
-          if ($current_page > 1) {
-              echo '<li class="page-item"><a class="page-link" href="?page=' . ($current_page - 1) . '">Prev</a></li>';
+        <form method="post" action="updateUser.php">
+          <div class="mb-3">
+            <input type="hidden" class="form-control" id="inputId" name="id" value="<?php echo $d['id']; ?>">
+          </div>
+          <div class="mb-3">
+            <label for="inputNama" class="form-label">Nama</label>
+            <input type="text" class="form-control" id="inputNama" name="name" value="<?php echo $d['name']; ?>">
+          </div>
+          <div class="mb-3">
+            <label for="inputEmail" class="form-label">Email</label>
+            <input type="email" class="form-control" id="inputEmail" name="email" value="<?php echo $d['email']; ?>">
+          </div>
+          <div class="mb-3">
+            <label for="inputPhone" class="form-label">No. Telepon</label>
+            <input type="number" class="form-control" id="inputEmail" name="phone" value="<?php echo $d['phone_number']; ?>">
+          </div>
+          <div class="d-grid gap-2 d-md-block">
+            <a class="btn btn-danger" href="user.php" role="button">Kembali</a>
+            <button type="submit" class="btn btn-primary">Simpan</button>
+          </div>
+        </form>
+        <?php 
           }
-
-          for ($page = 1; $page <= $total_pages; $page++) {
-              echo '<li class="page-item' . ($page == $current_page ? ' active' : '') . '"><a class="page-link" href="?page=' . $page . '">' . $page . '</a></li>';
-          }
-
-          if ($current_page < $total_pages) {
-              echo '<li class="page-item"><a class="page-link" href="?page=' . ($current_page + 1) . '">Next</a></li>';
-          }
-          ?>
-      </ul>
-  </nav>
-</div>
+        ?>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
     <!-- /.content -->
+  </div>
   <!-- /.content-wrapper -->
 
   <footer class="main-footer">
