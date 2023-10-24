@@ -183,9 +183,10 @@
           $data = mysqli_query($conn,"select * from products where id='$id'");
           while($d = mysqli_fetch_array($data)){
         ?>
-        <form method="post" action="update.php">
+        <form method="post" action="update.php" enctype="multipart/form-data">
           <div class="mb-3">
             <input type="hidden" class="form-control" id="inputId" name="id" value="<?php echo $d['id']; ?>">
+            <input type="hidden" class="form-control" id="inputGambar" name="gambarLama" value="<?php echo $d['image']; ?>">
           </div>
           <div class="mb-3">
             <label for="inputNama" class="form-label">Nama Produk</label>
@@ -212,8 +213,9 @@
             <input type="number" class="form-control" id="inputStok" name="stock" value="<?php echo $d['stock']; ?>">
           </div>
           <div class="mb-5">
-            <label for="inputGambar" class="form-label">Tautan Gambar</label>
-            <input type="text" class="form-control" id="inputGambar" name="image" value="<?php echo $d['image']; ?>">
+            <label for="inputGambar" class="form-label">Ganti Gambar :</label><br>
+            <img src="../assets/gambar_db/<?php echo $d['image']; ?>" width="25%"><br><br>
+            <input type="file" class="form-control" id="inputGambar" name="gambar">
           </div>
           <div class="d-grid gap-2 d-md-block">
             <a class="btn btn-danger" href="dashboard.php" role="button">Kembali</a>

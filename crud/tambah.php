@@ -177,7 +177,7 @@
     <section class="content">
       <div class="container-fluid">
         <div class="container mt-1 mb-5">
-        <form method="post" action="tambah_aksi.php">
+        <form method="post" action="tambah_aksi.php" enctype="multipart/form-data">
           <div class="mb-3">
             <label for="inputNama" class="form-label">Nama Produk</label>
             <input type="text" class="form-control" id="inputNama" name="product_name" required>
@@ -203,8 +203,8 @@
             <input type="number" class="form-control" id="inputStok" name="stock" required>
           </div>
           <div class="mb-5">
-            <label for="inputGambar" class="form-label">Tautan Gambar</label>
-            <input type="text" class="form-control" id="inputGambar" name="image" required>
+            <label for="inputGambar" class="form-label">Upload Gambar (Maksimal 2MB)</label>
+            <input type="file" class="form-control" id="inputGambar" name="gambar" required>
           </div>
           <div class="d-grid gap-2 d-md-block">
             <a class="btn btn-danger" href="dashboard.php" role="button">Kembali</a>
