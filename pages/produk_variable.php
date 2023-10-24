@@ -68,6 +68,31 @@
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <?php
+          date_default_timezone_set('Asia/Makassar');
+
+          $nama_hari = array("Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu");
+
+          $hari = date("w");
+          $tanggal = date("d");
+          $bulan = date("n");
+          $tahun = date("Y");
+
+          $nama_bulan = array(
+              "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+              "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+          );
+
+          $jam = date("H");
+          $menit = date("i");
+          $detik = date("s");
+
+          echo $nama_hari[$hari] . ", " . $tanggal . " " . $nama_bulan[$bulan - 1] . " " . $tahun . " " . $jam . ":" . $menit . ":" . $detik . " WITA";
+          ?>
+        </a>
+      </li>
     </ul>
 
     <!-- Right navbar links -->
