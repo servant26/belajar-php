@@ -51,7 +51,7 @@ function upload(){
 
     // batasi ukuran gambar
     if ($ukuranFile > 2000000) {
-        echo '<script>alert(""Ukuran gambar terlalu besar"); window.location.href = "tambah.php";</script>';
+        echo '<script>alert("Ukuran gambar terlalu besar"); window.location.href = "tambah.php";</script>';
         return false;
     }
 

@@ -1,3 +1,39 @@
+<?php 
+session_start();
+if( isset($_SESSION['login']) ){
+  header("Location:crud/dashboard.php");
+  exit;
+}
+
+require 'login/functions.php';
+
+if( isset($_POST["login"]) ){
+
+  $username = $_POST["username"];
+  $password = $_POST["password"];
+
+  $result = mysqli_query($conn, "SELECT * FROM users where phone_number = '$username'");
+
+  //cek username
+  if(mysqli_num_rows($result) === 1 ){
+
+    //cek password
+    $row = mysqli_fetch_assoc($result);
+    if(password_verify($password, $row["password"]) ){
+      $_SESSION['login'] = true;
+      echo '<script>alert("Login berhasil"); window.location.href = "crud/dashboard.php";</script>';
+      exit;
+    }
+  }
+
+  $error = true;
+
+  if( isset($error) ){
+    echo '<script>alert("Username atau Password salah"); window.location.href = "index.php";</script>';
+  }
+}
+
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,19 +50,19 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="assets/adminlte/dist/css/adminlte.min.css">
 </head>
-<body class="hold-transition login-page bg-dark">
+<body class="hold-transition login-page">
 <div class="login-box">
-  <div class="login-logo">
-    <b>Silahkan Login</b>
-  </div>
   <!-- /.login-logo -->
-  <div class="card">
-    <div class="card-body login-card-body bg-primary">
-      <p class="login-box-msg">Masuk untuk memulai</p>
+  <div class="card card-outline card-primary">
+    <div class="card-header text-center">
+      <a href="#" class="h1"><b>Login</b></a>
+    </div>
+    <div class="card-body">
+      <p class="login-box-msg">Silahkan login</p>
 
-      <form action="pages/proses.php" method="post">
+      <form action="" method="post">
         <div class="input-group mb-3">
-          <input type="text" class="form-control" name="username" placeholder="Masukkan username...">
+          <input type="text" class="form-control" name="username" id="username" placeholder="Masukkan username...">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -34,7 +70,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" name="password" placeholder="Masukkan password...">
+          <input type="password" class="form-control" name="password" id="password" placeholder="Masukkan password...">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -43,11 +79,14 @@
         </div>
         <div class="row">
           <!-- /.col -->
-          <div class="col-4">
-            <button type="submit" class="btn btn-dark">Login</button>
+          <div class="col-12">
+            <button type="submit" name="login" class="btn btn-primary btn-block">Login</button>
           </div>
           <!-- /.col -->
-        </div>
+        </div><br>
+      <p class="mb-0">
+        <a href="login/registrasi.php" class="text-center">Daftar sebagai user baru</a>
+      </p>
       </form>
     </div>
     <!-- /.login-card-body -->

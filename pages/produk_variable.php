@@ -1,4 +1,10 @@
 <?php
+session_start();
+if( !isset($_SESSION['login']) ){
+  header("Location: ../");
+  exit;
+}
+
   $game1 = "Red Dead Redemption";
   $gambar1 = "../assets/gambar/rdr.jpg";
   $deskripsi1 = "Bermain game petualangan seru di Red Dead Redemption series pertama ini";
@@ -196,7 +202,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="../index.php" class="nav-link">
+            <a href="../login/logout.php" class="nav-link" onclick="return confirm('Anda yakin ingin logout?');">
               <p>
                 Logout
               </p>

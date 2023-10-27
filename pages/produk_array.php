@@ -1,4 +1,10 @@
 <?php
+session_start();
+if( !isset($_SESSION['login']) ){
+  header("Location: ../");
+  exit;
+}
+
 $produk = [
 	[
 		"nama" => "The Legend of Zelda: Breath of the Wild",
@@ -56,7 +62,6 @@ $produk = [
     "link" => "https://www.nintendo.com/us/store/products/red-dead-redemption-switch/",
   ],
 ];
-
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -214,7 +219,7 @@ $produk = [
             </a>
           </li>
           <li class="nav-item">
-            <a href="../index.php" class="nav-link">
+            <a href="../login/logout.php" class="nav-link" onclick="return confirm('Anda yakin ingin logout?');">
               <p>
                 Logout
               </p>

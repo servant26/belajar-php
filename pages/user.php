@@ -1,3 +1,11 @@
+<?php 
+session_start();
+if( !isset($_SESSION['login']) ){
+  header("Location: ../");
+  exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -154,7 +162,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="../index.php" class="nav-link">
+            <a href="../login/logout.php" class="nav-link" onclick="return confirm('Anda yakin ingin logout?');">
               <p>
                 Logout
               </p>
@@ -197,6 +205,7 @@
           <tr>
             <th>No</th>
             <th>Nama</th>
+            <th>Posisi</th>
             <th>Email</th>
             <th>Phone Number</th>
             <th>Aksi</th>
@@ -210,12 +219,21 @@
         if (isset($_GET['kata_cari'])) {
             $kata_cari = $_GET['kata_cari'];
 
-        	$query = "SELECT * FROM users WHERE 
+/*SELECT product_categories.category_name AS nama_kategori, products.*, product_categories.id AS category_id
+                  FROM products
+                  INNER JOIN product_categories ON product_categories.id = products.category_id
+                  WHERE 
+
+SELECT user_groups.group_name AS nama_posisi, users.*, user_groups.id AS group_id FROM users
+INNER JOIN user_groups ON user_groups.id = users.group_id
+*/
+
+        	$query = "SELECT user_groups.group_name AS nama_posisi, users.*, user_groups.id AS group_id FROM users INNER JOIN user_groups ON user_groups.id = users.group_id WHERE 
                       name LIKE '%" . $kata_cari . "%' OR
                       email LIKE '%" . $kata_cari . "%' OR
                       phone_number LIKE '%" . $kata_cari . "%'";
 	        } else {
-	        	$query = "SELECT * FROM users ORDER BY id ASC";
+	        	$query = "SELECT user_groups.group_name AS nama_posisi, users.*, user_groups.id AS group_id FROM users INNER JOIN user_groups ON user_groups.id = users.group_id ORDER BY id ASC";
 	        }
 
         $result = mysqli_query($conn, $query);
@@ -244,6 +262,7 @@
                <tr>
                 <td><?php echo $starting_number++; ?></td>
                 <td><?php echo $row['name']; ?></td>
+                <td><?php echo $row['nama_posisi']; ?></td>
                 <td><?php echo $row['email']; ?></td>
                 <td><?php echo $row['phone_number']; ?></td>
                 <td>
