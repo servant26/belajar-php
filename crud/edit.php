@@ -193,7 +193,7 @@ if( !isset($_SESSION['login']) ){
         ?>
         <form method="post" action="update.php" enctype="multipart/form-data">
           <div class="mb-3">
-            <input type="hidden" class="form-control" id="inputId" name="id" value="<?php echo $d['id']; ?>">
+            <input type="hidden" class="form-control" name="id" value="<?php echo $d['id']; ?>">
             <input type="hidden" class="form-control" id="inputGambar" name="gambarLama" value="<?php echo $d['image']; ?>">
           </div>
           <div class="mb-3">
@@ -221,9 +221,14 @@ if( !isset($_SESSION['login']) ){
             <input type="number" class="form-control" id="inputStok" name="stock" value="<?php echo $d['stock']; ?>">
           </div>
           <div class="mb-5">
-            <label for="inputGambar" class="form-label">Ganti Gambar :</label><br>
-            <img src="../assets/gambar_db/<?php echo $d['image']; ?>" width="25%"><br><br>
-            <input type="file" class="form-control" id="inputGambar" name="gambar">
+              <label for="inputGambar" class="form-label">Ganti Gambar :</label><br>
+              <?php
+              $gambar_names = explode(', ', $d['image']); // Jika ada beberapa gambar, pisahkan berdasarkan koma
+              foreach ($gambar_names as $gambar_name) {
+                  echo '<img src="../assets/gambar_db/' . $gambar_name . '" width="25%"><br><br>';
+              }
+              ?>
+              <input type="file" class="form-control" id="inputGambar" name="gambar[]" multiple>
           </div>
           <div class="d-grid gap-2 d-md-block">
             <a class="btn btn-danger" href="dashboard.php" role="button">Kembali</a>
