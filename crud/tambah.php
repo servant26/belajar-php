@@ -211,8 +211,8 @@ if( !isset($_SESSION['login']) ){
             <input type="number" class="form-control" id="inputStok" name="stock" required>
           </div>
           <div class="mb-5">
-            <label for="inputGambar" class="form-label">Upload Gambar (Maksimal 2MB)</label>
-            <input type="file" class="form-control" id="inputGambar" name="gambar" required>
+              <label for="inputGambar" class="form-label">Upload Gambar (Maksimal 2MB)</label>
+              <input type="file" class="form-control" id="inputGambar" name="gambar[]" multiple required>
           </div>
           <div class="d-grid gap-2 d-md-block">
             <a class="btn btn-danger" href="dashboard.php" role="button">Kembali</a>

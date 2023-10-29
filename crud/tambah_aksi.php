@@ -1,22 +1,23 @@
 <?php
-// koneksi database
+// Koneksi database
 include 'koneksi.php';
 
-// menangkap data yang dikirim dari form
+// Tangkap data yang dikirim dari form
 $product_name = $_POST['product_name'];
 $category_id = $_POST['category_id'];
 $description = $_POST['description'];
 $price = $_POST['price'];
 $stock = $_POST['stock'];
-//$gambar = $_POST['gambar'];
-//upload gambar
 
+// Upload gambar
 $gambar = upload();
-if(!$gambar){
-    return false;
+if (!$gambar) {
+    // Handle kesalahan upload
+    echo '<script>alert("Gagal mengunggah gambar"); window.location.href = "tambah.php";</script>';
+    exit;
 }
 
-// menginput data ke database
+// Menginput data ke database
 $query = "INSERT INTO products (product_name, category_id, description, price, stock, image) VALUES ('$product_name', '$category_id', '$description', '$price', '$stock', '$gambar')";
 if (mysqli_query($conn, $query)) {
     echo '<script>alert("Data berhasil ditambahkan"); window.location.href = "dashboard.php";</script>';
@@ -24,45 +25,55 @@ if (mysqli_query($conn, $query)) {
     echo "Error: " . $query . "<br>" . mysqli_error($conn);
 }
 
-function upload(){
-    $namaFile = $_FILES['gambar']['name'];
-    $ukuranFile = $_FILES['gambar']['size'];
-    $error = $_FILES['gambar']['error'];
-    $tmpName = $_FILES['gambar']['tmp_name'];
+function upload()
+{
+    // Mendapatkan array file yang diunggah
+    $gambar = $_FILES['gambar'];
 
-    // cek apakah tidak ada gambar yang diupload
-    if ($error === 4) {
-        echo "<script>alert('Pilih gambar terlebih dahulu');</script>";
-        return false;
+    // Inisialisasi array untuk nama file gambar yang baru
+    $namaFileBaru = [];
+
+    // Iterasi melalui array file
+    for ($i = 0; $i < count($gambar['name']); $i++) {
+        $namaFile = $gambar['name'][$i];
+        $ukuranFile = $gambar['size'][$i];
+        $error = $gambar['error'][$i];
+        $tmpName = $gambar['tmp_name'][$i];
+
+        // Proses validasi dan penyimpanan gambar
+        // Validasi tipe file
+        $finfo = finfo_open(FILEINFO_MIME_TYPE);
+        $mime = finfo_file($finfo, $tmpName);
+        finfo_close($finfo);
+
+        $allowedMimeTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+        if (!in_array($mime, $allowedMimeTypes)) {
+            echo '<script>alert("Jenis file yang Anda unggah bukan gambar"); window.location.href = "tambah.php";</script>';
+            return false;
+        }
+
+        // Batasi ukuran gambar
+        if ($ukuranFile > 2000000) {
+            echo '<script>alert("Ukuran gambar terlalu besar"); window.location.href = "tambah.php";</script>';
+            return false;
+        }
+
+        // Generate nama file baru
+        $namaFileBaruPerGambar = uniqid();
+        $namaFileBaruPerGambar .= '.';
+        $namaFileBaruPerGambar .= pathinfo($namaFile, PATHINFO_EXTENSION);
+
+        // Proses upload
+        $tujuan = '../assets/gambar_db/' . $namaFileBaruPerGambar;
+        if (move_uploaded_file($tmpName, $tujuan)) {
+            $namaFileBaru[] = $namaFileBaruPerGambar;
+        } else {
+            echo '<script>alert("Gagal mengunggah gambar"); window.location.href = "tambah.php";</script>';
+            return false;
+        }
     }
 
-    // mendeteksi tipe konten file
-    $finfo = finfo_open(FILEINFO_MIME_TYPE);
-    $mime = finfo_file($finfo, $tmpName);
-    finfo_close($finfo);
-
-    // daftar tipe konten yang diperbolehkan
-    $allowedMimeTypes = ['image/jpeg', 'image/jpg', 'image/png'];
-
-    if (!in_array($mime, $allowedMimeTypes)) {
-        echo '<script>alert("Jenis file yang Anda unggah bukan gambar"); window.location.href = "tambah.php";</script>';
-        return false;
-    }
-
-    // batasi ukuran gambar
-    if ($ukuranFile > 2000000) {
-        echo '<script>alert("Ukuran gambar terlalu besar"); window.location.href = "tambah.php";</script>';
-        return false;
-    }
-
-    // generate gambar baru
-    $namaFileBaru = uniqid();
-    $namaFileBaru .= '.';
-    $namaFileBaru .= pathinfo($namaFile, PATHINFO_EXTENSION);
-
-    // proses upload
-    move_uploaded_file($tmpName, '../assets/gambar_db/' . $namaFileBaru);
-    return $namaFileBaru;
+    // Kembalikan daftar nama file baru sebagai string
+    return implode(', ', $namaFileBaru);
 }
-
 ?>

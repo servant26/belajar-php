@@ -265,7 +265,14 @@ if( !isset($_SESSION['login']) ){
                <tr>
                 <td><?php echo $starting_number++; ?></td>
                 <td><?php echo $row['product_name']; ?></td>
-                <td class="lebar_gambar"><img src="../assets/gambar_db/<?php echo $row['image']; ?>" class="td_gambar"></td>
+                <td class="lebar_gambar">
+                    <?php
+                    $gambar_names = explode(', ', $row['image']);
+                    foreach ($gambar_names as $gambar_name) {
+                        echo '<img src="../assets/gambar_db/' . $gambar_name . '" class="td_gambar">';
+                    }
+                    ?>
+                </td>
                 <td><?php echo $row['nama_kategori']; ?></td>
                 <td><?php echo $row['description']; ?></td>
                 <td><?php echo $row['price']; ?></td>
