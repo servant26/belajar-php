@@ -223,7 +223,7 @@ if( !isset($_SESSION['login']) ){
           <div class="mb-5">
               <label for="inputGambar" class="form-label">Ganti Gambar :</label><br>
               <?php
-              $gambar_names = explode(', ', $d['image']); // Jika ada beberapa gambar, pisahkan berdasarkan koma
+              $gambar_names = explode(', ', $d['image']); 
               foreach ($gambar_names as $gambar_name) {
                   echo '<img src="../assets/gambar_db/' . $gambar_name . '" width="25%"><br><br>';
               }

@@ -1,39 +1,31 @@
-<?php 
-session_start();
-if( isset($_SESSION['login']) ){
-  header("Location:crud/dashboard.php");
-  exit;
+<?php
+require 'login/function.php';
+
+if(!empty($_SESSION["id"])){
+  header("Location: index.php");
 }
 
-require 'login/functions.php';
+$login = new Login();
 
-if( isset($_POST["login"]) ){
+if(isset($_POST["submit"])){
+  $result = $login->login($_POST["telp"], $_POST["password"]);
 
-  $username = $_POST["username"];
-  $password = $_POST["password"];
-
-  $result = mysqli_query($conn, "SELECT * FROM users where phone_number = '$username'");
-
-  //cek username
-  if(mysqli_num_rows($result) === 1 ){
-
-    //cek password
-    $row = mysqli_fetch_assoc($result);
-    if(password_verify($password, $row["password"]) ){
-      $_SESSION['login'] = true;
-      echo '<script>alert("Login berhasil"); window.location.href = "crud/dashboard.php";</script>';
-      exit;
-    }
+  if($result == 1){
+    $_SESSION["login"] = true;
+    $_SESSION["id"] = $login->idUser();
+    echo '<script>alert("Login berhasil"); window.location.href = "crud/dashboard.php";</script>';
   }
-
-  $error = true;
-
-  if( isset($error) ){
-    echo '<script>alert("Username atau Password salah"); window.location.href = "index.php";</script>';
+  elseif($result == 10){
+    echo
+    "<script> alert('Wrong Password'); </script>";
+  }
+  elseif($result == 100){
+    echo
+    "<script> alert('User Not Registered'); </script>";
   }
 }
+?>
 
- ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,7 +54,7 @@ if( isset($_POST["login"]) ){
 
       <form action="" method="post">
         <div class="input-group mb-3">
-          <input type="text" class="form-control" name="username" id="username" placeholder="Masukkan username...">
+          <input type="text" class="form-control" name="telp" id="telp" placeholder="Masukkan username...">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -80,12 +72,12 @@ if( isset($_POST["login"]) ){
         <div class="row">
           <!-- /.col -->
           <div class="col-12">
-            <button type="submit" name="login" class="btn btn-primary btn-block">Login</button>
+            <button type="submit" name="submit" class="btn btn-primary btn-block">Login</button>
           </div>
           <!-- /.col -->
         </div><br>
       <p class="mb-0">
-        <a href="login/registrasi.php" class="text-center">Daftar sebagai user baru</a>
+        <a href="login/registration.php" class="text-center">Daftar sebagai user baru</a>
       </p>
       </form>
     </div>

@@ -1,12 +1,25 @@
-<?php 
-require 'functions.php';
+<?php
+require 'function.php';
 
-if( isset($_POST['register']) ){
+if(!empty($_SESSION["id"])){
+  header("Location: ../index.php");
+}
 
-  if( registrasi($_POST) > 0){
-    echo '<script>alert("User baru berhasil ditambahkan"); window.location.href = "../";</script>';
-  }else{
-    echo mysqli_error($conn);
+$register = new Register();
+
+if(isset($_POST["submit"])){
+  $result = $register->registration($_POST["name"], $_POST["username"], $_POST["email"], $_POST["telp"], $_POST["password"], $_POST["confirmpassword"]);
+
+  if($result == 1){
+    echo '<script>alert("Pendaftaran berhasil"); window.location.href = "../";</script>';
+  }
+  elseif($result == 10){
+    echo
+    "<script> alert('Username atau Email telah terdaftar'); </script>";
+  }
+  elseif($result == 100){
+    echo
+    "<script> alert('Konfirmasi password tidak sesuai'); </script>";
   }
 }
 ?>
@@ -44,6 +57,16 @@ if( isset($_POST['register']) ){
             </div>
           </div>
         </div>
+
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" name="username" id="username" placeholder="Username" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+
         <div class="input-group mb-3">
           <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
           <div class="input-group-append">
@@ -52,14 +75,16 @@ if( isset($_POST['register']) ){
             </div>
           </div>
         </div>
+
         <div class="input-group mb-3">
-          <input type="text" class="form-control" name="username" id="username" placeholder="No.Hp" required>
+          <input type="number" class="form-control" name="telp" id="telp" placeholder="Nomor Telepon" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
             </div>
           </div>
         </div>
+
         <div class="input-group mb-3">
           <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
           <div class="input-group-append">
@@ -68,8 +93,9 @@ if( isset($_POST['register']) ){
             </div>
           </div>
         </div>
+
         <div class="input-group mb-3">
-          <input type="password" class="form-control" name="password2" id="password2" placeholder="Retype password" required>
+          <input type="password" class="form-control" name="confirmpassword" id="confirmpassword" placeholder="Retype password" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -78,7 +104,7 @@ if( isset($_POST['register']) ){
         </div>
         <div class="row">
           <div class="col-12">
-            <button type="submit" name="register" class="btn btn-primary btn-block">Register</button>
+            <button type="submit" name="submit" class="btn btn-primary btn-block">Register</button>
           </div>
           <!-- /.col -->
         </div><br>

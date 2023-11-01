@@ -1,11 +1,15 @@
-<?php 
-session_start();
+<?php
+require '../login/function.php';
 
-if( !isset($_SESSION['login']) ){
-  header("Location: ../");
-  exit;
+$select = new Select();
+
+if(!empty($_SESSION["id"])){
+  $user = $select->selectUserById($_SESSION["id"]);
 }
- ?>
+else{
+  header("Location: ../");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -109,7 +113,7 @@ if( !isset($_SESSION['login']) ){
           <img src="../assets/adminlte/dist/img/ali_khatami.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Ali Khatami</a>
+          <a href="#" class="d-block"><?php echo $user["name"]; ?></a>
         </div>
       </div>
 
