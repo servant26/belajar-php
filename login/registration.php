@@ -15,7 +15,7 @@ if(isset($_POST["submit"])){
   }
   elseif($result == 10){
     echo
-    "<script> alert('Username atau Email telah terdaftar'); </script>";
+    "<script> alert('Nomor telepon telah terdaftar'); </script>";
   }
   elseif($result == 100){
     echo

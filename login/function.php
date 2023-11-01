@@ -15,7 +15,7 @@ class Connection{
 
 class Register extends Connection{
   public function registration($name, $username, $email, $telp, $password, $confirmpassword){
-    $duplicate = mysqli_query($this->conn, "SELECT * FROM users WHERE username = '$username' OR email = '$email'");
+    $duplicate = mysqli_query($this->conn, "SELECT * FROM users WHERE phone_number = '$telp'");
     if(mysqli_num_rows($duplicate) > 0){
       return 10;
       // Username or email has already taken
