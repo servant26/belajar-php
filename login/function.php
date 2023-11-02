@@ -16,13 +16,14 @@ class Connection{
 class Register extends Connection{
   public function registration($name, $username, $email, $telp, $password, $confirmpassword){
     $duplicate = mysqli_query($this->conn, "SELECT * FROM users WHERE phone_number = '$telp'");
+    $group_id = 3;
     if(mysqli_num_rows($duplicate) > 0){
       return 10;
       // Username or email has already taken
     }
     else{
       if($password == $confirmpassword){
-        $query = "INSERT INTO users(name, username, email, phone_number, password) VALUES('$name','$username','$email','$telp','$password')";
+        $query = "INSERT INTO users(name, username, email, phone_number, password, group_id) VALUES('$name','$username','$email','$telp','$password','$group_id')";
         mysqli_query($this->conn, $query);
         return 1;
         // Registration successful

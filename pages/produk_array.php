@@ -1,8 +1,13 @@
 <?php
-session_start();
-if( !isset($_SESSION['login']) ){
+require '../login/function.php';
+
+$select = new Select();
+
+if(!empty($_SESSION["id"])){
+  $user = $select->selectUserById($_SESSION["id"]);
+}
+else{
   header("Location: ../");
-  exit;
 }
 
 $produk = [
@@ -163,10 +168,10 @@ $produk = [
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="../assets/adminlte/dist/img/ali_khatami.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="../assets/adminlte/dist/img/profil.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Ali Khatami</a>
+          <a href="#" class="d-block"><?php echo $user["name"]; ?></a>
         </div>
       </div>
 

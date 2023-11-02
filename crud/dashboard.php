@@ -1,4 +1,7 @@
 <?php
+include 'database.php';
+$db = new database();
+
 require '../login/function.php';
 
 $select = new Select();
@@ -8,6 +11,20 @@ if(!empty($_SESSION["id"])){
 }
 else{
   header("Location: ../");
+}
+
+$recordsPerPage = 5;
+
+$totalRecords = count($db->tampil_data());
+
+$totalPages = ceil($totalRecords / $recordsPerPage);
+
+$currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
+
+if ($currentPage < 1) {
+    $currentPage = 1;
+} elseif ($currentPage > $totalPages) {
+    $currentPage = $totalPages;
 }
 ?>
 <!DOCTYPE html>
@@ -110,7 +127,7 @@ else{
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="../assets/adminlte/dist/img/ali_khatami.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="../assets/adminlte/dist/img/profil.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block"><?php echo $user["name"]; ?></a>
@@ -190,7 +207,7 @@ else{
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1>Daftar Produk</h1>
-            <a class="btn btn-primary mt-4" href="tambah.php" role="button">Tambah</a>
+            <a class="btn btn-primary mt-4" href="input.php" role="button">Tambah</a>
             <form class="d-flex mt-3" role="search" action="dashboard.php" method="get">
               <input class="form-control me-2" type="search" name="kata_cari" placeholder="Cari materi..." aria-label="Cari materi..." value="<?php if(isset($_GET['kata_cari'])) { echo $_GET['kata_cari']; } ?>">
               <button class="btn btn-primary" type="submit">Cari</button>
@@ -218,73 +235,32 @@ else{
             <th>Aksi</th>
           </tr>
         </thead>
-
         <tbody>
         <?php
-        include 'koneksi.php';
-        $items_per_page = 5; 
-        if (isset($_GET['kata_cari'])) {
-            $kata_cari = $_GET['kata_cari'];
-
-        $query = "SELECT product_categories.category_name AS nama_kategori, products.*, product_categories.id AS category_id
-                  FROM products
-                  INNER JOIN product_categories ON product_categories.id = products.category_id
-                  WHERE 
-                  product_name LIKE '%" . $kata_cari . "%' OR
-                  category_name LIKE '%" . $kata_cari . "%' OR
-                  description LIKE '%" . $kata_cari . "%' OR
-                  price LIKE '%" . $kata_cari . "%' OR
-                  stock LIKE '%" . $kata_cari . "%'
-                  ORDER BY products.id ASC";
-        } else {
-          $query = "SELECT product_categories.category_name AS nama_kategori, products.*, product_categories.id AS category_id
-                    FROM products
-                    INNER JOIN product_categories ON product_categories.id = products.category_id
-                    ORDER BY products.id ASC";
-        }
-
-        $result = mysqli_query($conn, $query);
-
-        if (!$result) {
-            die("Query Error : " . mysqli_errno($conn) . " - " . mysqli_error($conn));
-        }
-
-        $total_items = mysqli_num_rows($result);
-        $total_pages = ceil($total_items / $items_per_page); 
-
-        $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
-
-        $start_index = ($current_page - 1) * $items_per_page;
-        $query = $query . " LIMIT $start_index, $items_per_page";
-        $result = mysqli_query($conn, $query);
-
-        if (!$result) {
-            die("Query Error : " . mysqli_errno($conn) . " - " . mysqli_error($conn));
-        }
-
-        $starting_number = ($current_page - 1) * $items_per_page + 1;
-
-        while ($row = mysqli_fetch_assoc($result)) {
+        $no = ($currentPage - 1) * $recordsPerPage + 1;
+        $startingRecord = ($currentPage - 1) * $recordsPerPage;
+        $recordsToDisplay = array_slice($db->tampil_data(), $startingRecord, $recordsPerPage);
+        foreach ($recordsToDisplay as $x) {
                ?>
                <tr>
-                <td><?php echo $starting_number++; ?></td>
-                <td><?php echo $row['product_name']; ?></td>
+                <td><?php echo $no++; ?></td>
+                <td><?php echo $x['product_name']; ?></td>
                 <td class="lebar_gambar">
                     <?php
-                    $gambar_names = explode(', ', $row['image']);
+                    $gambar_names = explode(', ', $x['image']);
                     foreach ($gambar_names as $gambar_name) {
                         echo '<img src="../assets/gambar_db/' . $gambar_name . '" class="td_gambar">';
                     }
                     ?>
                 </td>
-                <td><?php echo $row['nama_kategori']; ?></td>
-                <td><?php echo $row['description']; ?></td>
-                <td><?php echo $row['price']; ?></td>
-                <td><?php echo $row['stock']; ?></td>
+                <td><?php echo $x['nama_kategori']; ?></td>
+                <td><?php echo $x['description']; ?></td>
+                <td><?php echo $x['price']; ?></td>
+                <td><?php echo $x['stock']; ?></td>
                 <td>
                   <div class="d-grid gap-2 d-md-block">
-                      <a class="btn btn-warning" href="edit.php?id=<?php echo $row['id']; ?>" role="button">Edit</a>
-                      <a class="btn btn-danger" href="hapus.php?id=<?php echo $row['id']; ?>" role="button">Hapus</a>
+                      <a class="btn btn-warning" href="edit.php?id=<?php echo $x['id']; ?>&aksi=edit" role="button">Edit</a>
+                      <a class="btn btn-danger" href="proses.php?id=<?php echo $x['id']; ?>&aksi=hapus" onclick="return confirm('Apakah Anda yakin ingin menghapus <?php echo $x['product_name']; ?>?');" role="button">Hapus</a>
                   </div>          
                 </td>
                </tr>
@@ -293,28 +269,27 @@ else{
         ?>
   </tbody>
   </table>
-  <!-- Pagination below the table -->
-  <nav aria-label="Page navigation example">
-      <ul class="pagination justify-content-center mt-4">
-          <?php
-          if ($current_page > 1) {
-              echo '<li class="page-item"><a class="page-link" href="?page=' . ($current_page - 1) . '">Prev</a></li>';
-          }
-
-          for ($page = 1; $page <= $total_pages; $page++) {
-              echo '<li class="page-item' . ($page == $current_page ? ' active' : '') . '"><a class="page-link" href="?page=' . $page . '">' . $page . '</a></li>';
-          }
-
-          if ($current_page < $total_pages) {
-              echo '<li class="page-item"><a class="page-link" href="?page=' . ($current_page + 1) . '">Next</a></li>';
-          }
-          ?>
-      </ul>
-  </nav>
 </div>
-    <!-- /.content -->
-  <!-- /.content-wrapper -->
+<!-- /.content -->
+<!-- /.content-wrapper -->
+<!-- Pagination -->
+<nav aria-label="...">
+  <ul class="pagination justify-content-center">
+    <li class="page-item <?php echo $currentPage == 1 ? 'disabled' : ''; ?>">
+      <a class="page-link" href="?page=<?php echo $currentPage - 1; ?>">Previous</a>
+    </li>
 
+    <?php for ($page = 1; $page <= $totalPages; $page++) { ?>
+      <li class="page-item <?php echo $currentPage == $page ? 'active' : ''; ?>">
+        <a class="page-link" href="?page=<?php echo $page; ?>"><?php echo $page; ?></a>
+      </li>
+    <?php } ?>
+
+    <li class="page-item <?php echo $currentPage == $totalPages ? 'disabled' : ''; ?>">
+      <a class="page-link" href="?page=<?php echo $currentPage + 1; ?>">Next</a>
+    </li>
+  </ul>
+</nav>
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
     </div>

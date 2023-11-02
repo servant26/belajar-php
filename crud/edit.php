@@ -1,8 +1,16 @@
 <?php 
-session_start();
-if( !isset($_SESSION['login']) ){
+include 'database.php';
+$db = new database();
+
+require '../login/function.php';
+
+$select = new Select();
+
+if(!empty($_SESSION["id"])){
+  $user = $select->selectUserById($_SESSION["id"]);
+}
+else{
   header("Location: ../");
-  exit;
 }
 ?>
 
@@ -106,10 +114,10 @@ if( !isset($_SESSION['login']) ){
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="../assets/adminlte/dist/img/ali_khatami.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="../assets/adminlte/dist/img/profil.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Ali Khatami</a>
+          <a href="#" class="d-block"><?php echo $user["name"]; ?></a>
         </div>
       </div>
 
@@ -186,12 +194,9 @@ if( !isset($_SESSION['login']) ){
       <div class="container-fluid">
         <div class="container mt-5 mb-5">
         <?php
-          include 'koneksi.php';
-          $id = $_GET['id'];
-          $data = mysqli_query($conn,"select * from products where id='$id'");
-          while($d = mysqli_fetch_array($data)){
+          foreach($db->edit($_GET['id']) as $d){
         ?>
-        <form method="post" action="update.php" enctype="multipart/form-data">
+        <form method="post" action="proses.php?aksi=update" enctype="multipart/form-data">
           <div class="mb-3">
             <input type="hidden" class="form-control" name="id" value="<?php echo $d['id']; ?>">
             <input type="hidden" class="form-control" id="inputGambar" name="gambarLama" value="<?php echo $d['image']; ?>">
@@ -228,7 +233,7 @@ if( !isset($_SESSION['login']) ){
                   echo '<img src="../assets/gambar_db/' . $gambar_name . '" width="25%"><br><br>';
               }
               ?>
-              <input type="file" class="form-control" id="inputGambar" name="gambar[]" multiple>
+              <input type="file" class="form-control" id="image" name="image[]" multiple>
           </div>
           <div class="d-grid gap-2 d-md-block">
             <a class="btn btn-danger" href="dashboard.php" role="button">Kembali</a>

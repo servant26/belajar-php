@@ -1,11 +1,15 @@
 <?php 
-session_start();
-if( !isset($_SESSION['login']) ){
+require '../login/function.php';
+
+$select = new Select();
+
+if(!empty($_SESSION["id"])){
+  $user = $select->selectUserById($_SESSION["id"]);
+}
+else{
   header("Location: ../");
-  exit;
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -106,10 +110,10 @@ if( !isset($_SESSION['login']) ){
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="../assets/adminlte/dist/img/ali_khatami.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="../assets/adminlte/dist/img/profil.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Ali Khatami</a>
+          <a href="#" class="d-block"><?php echo $user["name"]; ?></a>
         </div>
       </div>
 
@@ -147,7 +151,7 @@ if( !isset($_SESSION['login']) ){
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../pages/produk_array.php" class="nav-link active">
+                <a href="../pages/produk_array.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Produk (Array)</p>
                 </a>
@@ -192,13 +196,14 @@ if( !isset($_SESSION['login']) ){
     <section class="content">
       <div class="container-fluid">
         <?php
-        include '../crud/koneksi.php';
-        $query = "SELECT
-                    (SELECT COUNT(*) FROM products) AS produk,
-                    (SELECT COUNT(*) FROM users) AS customer,
-                    (SELECT COUNT(*) FROM vendors) AS vendors";
-        $result = mysqli_query($conn, $query);
-        $row = mysqli_fetch_assoc($result);
+          include '../crud/database.php';
+          $db = new database(); // Membuat instance objek database
+          $query = "SELECT
+                      (SELECT COUNT(*) FROM products) AS produk,
+                      (SELECT COUNT(*) FROM users) AS customer,
+                      (SELECT COUNT(*) FROM vendors) AS vendors";
+          $result = $db->conn->query($query); // Menggunakan objek database
+          $row = mysqli_fetch_assoc($result);
         ?>
         <!-- Small Box (Stat card) -->
         <div class="row">
