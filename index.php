@@ -1,9 +1,9 @@
 <?php
 require 'login/function.php';
 
-if(!empty($_SESSION["id"])){
-  header("Location: index.php");
-}
+// if(!empty($_SESSION["id"])){
+//   header("Location: index.php");
+// }
 
 $login = new Login();
 
@@ -53,14 +53,16 @@ if(isset($_POST["submit"])){
       <p class="login-box-msg">Silahkan login</p>
 
       <form action="" method="post">
+      <label for="telp">Nomor Telepon :</label>
         <div class="input-group mb-3">
-          <input type="text" class="form-control" name="telp" id="telp" placeholder="Masukkan username...">
+          <input type="text" class="form-control" name="telp" id="telp" placeholder="Masukkan nomor telepon..." autofocus>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
             </div>
           </div>
         </div>
+        <label for="password">Password :</label>
         <div class="input-group mb-3">
           <input type="password" class="form-control" name="password" id="password" placeholder="Masukkan password...">
           <div class="input-group-append">

@@ -236,38 +236,40 @@ else{
 <!-- Main content -->
 <section class="content">
   <div class="container-fluid">
-    <table class="table table-striped table-dark">
-      <tr>
-        <th>NO</th>
-        <th>Gambar</th>
-        <th>Nama Game</th>
-        <th>Deskripsi</th>
-        <th>Link</th>
-      </tr>
-      <!-- =========================================================== -->
-      <h5 class="mt-1 mb-2"></h5>
-      <div class="row">
-        <?php
-        for ($i = 1; $i <= 8; $i++) {
-          $gambar = ${"gambar" . $i};
-          $game = ${"game" . $i};
-          $deskripsi = ${"deskripsi" . $i};
-          $link = ${"link" . $i};
-        ?>
-          <div class="col-md-4 col-sm-6 col-12">
-            <tr>
-              <td><?= $i ?></td>
-              <td class="lebar_gambar"><img src="<?= $gambar ?>" class="td_gambar"></td>
-              <td><?= $game ?></td>
-              <td><?= $deskripsi ?></td>
-              <td class="lebar_link"><a href="<?= $link ?>" class="btn btn-primary" target="_blank">Beli</a></td>
-            </tr>
-          </div>
-        <?php
-        }
-        ?>
-      </div>
-    </table>
+    <div class="table-responsive">
+      <table class="table table-striped table-dark">
+        <tr>
+          <th>NO</th>
+          <th>Gambar</th>
+          <th>Nama Game</th>
+          <th>Deskripsi</th>
+          <th>Link</th>
+        </tr>
+        <!-- =========================================================== -->
+        <h5 class="mt-1 mb-2"></h5>
+        <div class="row">
+          <?php
+          for ($i = 1; $i <= 8; $i++) {
+            $gambar = ${"gambar" . $i};
+            $game = ${"game" . $i};
+            $deskripsi = ${"deskripsi" . $i};
+            $link = ${"link" . $i};
+          ?>
+            <div class="col-md-4 col-sm-6 col-12">
+              <tr>
+                <td><?= $i ?></td>
+                <td class="lebar_gambar"><img src="<?= $gambar ?>" class="td_gambar"></td>
+                <td><?= $game ?></td>
+                <td><?= $deskripsi ?></td>
+                <td class="lebar_link"><a href="<?= $link ?>" class="btn btn-primary" target="_blank">Beli</a></td>
+              </tr>
+            </div>
+          <?php
+          }
+          ?>
+        </div>
+      </table>
+    </div>
   </div><!-- /.container-fluid -->
 </section>
 <!-- /.content -->

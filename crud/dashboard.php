@@ -222,53 +222,55 @@ if ($currentPage < 1) {
       <div class="container-fluid">
         <!-- =========================================================== -->
         <h5 class="mt-1 mb-2"></h5>
-      <table class="table table-striped table-dark">
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>Nama Produk</th>
-            <th>Foto Produk</th>
-            <th>Kategori</th>
-            <th>Deskripsi</th>
-            <th>Harga</th>
-            <th>Stok</th>
-            <th>Aksi</th>
-          </tr>
-        </thead>
-        <tbody>
-        <?php
-        $no = ($currentPage - 1) * $recordsPerPage + 1;
-        $startingRecord = ($currentPage - 1) * $recordsPerPage;
-        $recordsToDisplay = array_slice($db->tampil_data(), $startingRecord, $recordsPerPage);
-        foreach ($recordsToDisplay as $x) {
-               ?>
-               <tr>
-                <td><?php echo $no++; ?></td>
-                <td><?php echo $x['product_name']; ?></td>
-                <td class="lebar_gambar">
-                    <?php
-                    $gambar_names = explode(', ', $x['image']);
-                    foreach ($gambar_names as $gambar_name) {
-                        echo '<img src="../assets/gambar_db/' . $gambar_name . '" class="td_gambar">';
-                    }
-                    ?>
-                </td>
-                <td><?php echo $x['nama_kategori']; ?></td>
-                <td><?php echo $x['description']; ?></td>
-                <td><?php echo $x['price']; ?></td>
-                <td><?php echo $x['stock']; ?></td>
-                <td>
-                  <div class="d-grid gap-2 d-md-block">
-                      <a class="btn btn-warning" href="edit.php?id=<?php echo $x['id']; ?>&aksi=edit" role="button">Edit</a>
-                      <a class="btn btn-danger" href="proses.php?id=<?php echo $x['id']; ?>&aksi=hapus" onclick="return confirm('Apakah Anda yakin ingin menghapus <?php echo $x['product_name']; ?>?');" role="button">Hapus</a>
-                  </div>          
-                </td>
-               </tr>
-               <?php
-               }
-        ?>
-  </tbody>
-  </table>
+        <div class="table-responsive">
+          <table class="table table-striped table-dark">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Nama Produk</th>
+                <th>Foto Produk</th>
+                <th>Kategori</th>
+                <th>Deskripsi</th>
+                <th>Harga</th>
+                <th>Stok</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+            <?php
+            $no = ($currentPage - 1) * $recordsPerPage + 1;
+            $startingRecord = ($currentPage - 1) * $recordsPerPage;
+            $recordsToDisplay = array_slice($db->tampil_data(), $startingRecord, $recordsPerPage);
+            foreach ($recordsToDisplay as $x) {
+                  ?>
+                  <tr>
+                    <td><?php echo $no++; ?></td>
+                    <td><?php echo $x['product_name']; ?></td>
+                    <td class="lebar_gambar">
+                        <?php
+                        $gambar_names = explode(', ', $x['image']);
+                        foreach ($gambar_names as $gambar_name) {
+                            echo '<img src="../assets/gambar_db/' . $gambar_name . '" class="td_gambar">';
+                        }
+                        ?>
+                    </td>
+                    <td><?php echo $x['nama_kategori']; ?></td>
+                    <td><?php echo $x['description']; ?></td>
+                    <td><?php echo $x['price']; ?></td>
+                    <td><?php echo $x['stock']; ?></td>
+                    <td>
+                      <div class="d-grid gap-2 d-md-block">
+                          <a class="btn btn-warning" href="edit.php?id=<?php echo $x['id']; ?>&aksi=edit" role="button">Edit</a>
+                          <a class="btn btn-danger" href="proses.php?id=<?php echo $x['id']; ?>&aksi=hapus" onclick="return confirm('Apakah Anda yakin ingin menghapus <?php echo $x['product_name']; ?>?');" role="button">Hapus</a>
+                      </div>          
+                    </td>
+                  </tr>
+                  <?php
+                  }
+            ?>
+      </tbody>
+          </table>
+        </div>
 </div>
 <!-- /.content -->
 <!-- /.content-wrapper -->

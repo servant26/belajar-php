@@ -254,31 +254,34 @@ $produk = [
     <section class="content">
       <div class="container-fluid">
         <!-- =========================================================== -->
-        <table class="table table-striped table-dark">
-          <tr>
-            <th>NO</th>
-            <th>Gambar</th>
-            <th>Nama Game</th>
-            <th>Deskripsi</th>
-            <th>Link</th>
-          </tr>
-        <?php 
-        $no = 1;
-        foreach ($produk as $pd) :?> 
-        <div class="row">
-          <div class="col-md-4 col-sm-6 col-12">
-          <tr>
-            <td><?= $no++; ?></td>
-            <td class="lebar_gambar"><img src="<?= $pd["gambar"];?>" class="td_gambar"></td>
-            <td><?= $pd['nama'];?></td>
-            <td><?= $pd['deskripsi'];?></td>
-            <td class="lebar_link"><a href="<?= $pd["link"];?>" class="btn btn-primary" target="_blank">Beli</a></td>
-          </tr>
+        <div class="table-responsive">
+          <table class="table table-striped table-dark">
+            <tr>
+              <th>NO</th>
+              <th>Gambar</th>
+              <th>Nama Game</th>
+              <th>Deskripsi</th>
+              <th>Link</th>
+            </tr>
+          <?php 
+          $no = 1;
+          foreach ($produk as $pd) :?> 
+          <div class="row">
+            <div class="col-md-4 col-sm-6 col-12">
+            <tr>
+              <td><?= $no++; ?></td>
+              <td class="lebar_gambar"><img src="<?= $pd["gambar"];?>" class="td_gambar"></td>
+              <td><?= $pd['nama'];?></td>
+              <td><?= $pd['deskripsi'];?></td>
+              <td class="lebar_link"><a href="<?= $pd["link"];?>" class="btn btn-primary" target="_blank">Beli</a></td>
+            </tr>
+            </div>
+            <!-- /.col -->
           </div>
-          <!-- /.col -->
+          <!-- /.row -->
+          <?php endforeach; ?>
+          </table>
         </div>
-        <!-- /.row -->
-		    <?php endforeach; ?>
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->

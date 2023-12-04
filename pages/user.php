@@ -222,41 +222,43 @@ if ($currentPage < 1) {
       <div class="container-fluid">
         <!-- =========================================================== -->
         <h5 class="mt-1 mb-2"></h5>
-      <table class="table table-striped table-dark">
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>Nama</th>
-            <th>Posisi</th>
-            <th>Email</th>
-            <th>Phone Number</th>
-            <th>Aksi</th>
-          </tr>
-        </thead>
-        <tbody>
-        <?php
-        $no = ($currentPage - 1) * $recordsPerPage + 1;
-        $startingRecord = ($currentPage - 1) * $recordsPerPage;
-        $recordsToDisplay = array_slice($db->tampil_data_user(), $startingRecord, $recordsPerPage);
-        foreach ($recordsToDisplay as $x) {
-               ?>
-               <tr>
-                <td><?php echo $no++; ?></td>
-                <td><?php echo $x['name']; ?></td>
-                <td><?php echo $x['nama_posisi']; ?></td>
-                <td><?php echo $x['email']; ?></td>
-                <td><?php echo $x['phone_number']; ?></td>
-                <td>
-                  <div class="d-grid gap-2 d-md-block">
-                      <a class="btn btn-danger" href="../crud/proses.php?id=<?php echo $x['id']; ?>&aksi=hapusUser" onclick="return confirm('Apakah Anda yakin ingin menghapus <?php echo $x['name']; ?>?');" role="button">Hapus</a>
-                  </div>          
-                </td>
-               </tr>
-               <?php
-               }
-        ?>
-  </tbody>
-  </table>
+        <div class="table-responsive">
+          <table class="table table-striped table-dark">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Nama</th>
+                <th>Posisi</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+            <?php
+            $no = ($currentPage - 1) * $recordsPerPage + 1;
+            $startingRecord = ($currentPage - 1) * $recordsPerPage;
+            $recordsToDisplay = array_slice($db->tampil_data_user(), $startingRecord, $recordsPerPage);
+            foreach ($recordsToDisplay as $x) {
+                  ?>
+                  <tr>
+                    <td><?php echo $no++; ?></td>
+                    <td><?php echo $x['name']; ?></td>
+                    <td><?php echo $x['nama_posisi']; ?></td>
+                    <td><?php echo $x['email']; ?></td>
+                    <td><?php echo $x['phone_number']; ?></td>
+                    <td>
+                      <div class="d-grid gap-2 d-md-block">
+                          <a class="btn btn-danger" href="../crud/proses.php?id=<?php echo $x['id']; ?>&aksi=hapusUser" onclick="return confirm('Apakah Anda yakin ingin menghapus <?php echo $x['name']; ?>?');" role="button">Hapus</a>
+                      </div>          
+                    </td>
+                  </tr>
+                  <?php
+                  }
+            ?>
+      </tbody>
+          </table>
+        </div>
 </div>
 <!-- /.content -->
 <!-- /.content-wrapper -->

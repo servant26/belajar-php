@@ -1,9 +1,9 @@
 <?php
 require 'function.php';
 
-if(!empty($_SESSION["id"])){
-  header("Location: ../index.php");
-}
+// if(!empty($_SESSION["id"])){
+//   header("Location: ../index.php");
+// }
 
 $register = new Register();
 
@@ -50,7 +50,7 @@ if(isset($_POST["submit"])){
 
       <form action="" method="post">
         <div class="input-group mb-3">
-          <input type="text" class="form-control" name="name" id="name" placeholder="Nama Lengkap" required>
+          <input type="text" class="form-control" name="name" id="name" placeholder="Nama Lengkap" required autofocus>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
